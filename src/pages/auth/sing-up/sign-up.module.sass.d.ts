@@ -8,7 +8,6 @@ interface CssExports {
   'enter_block': string;
   'enter_block_active': string;
   'enter_with__block': string;
-  'forgot_password': string;
   'input_clear': string;
   'input_error': string;
   'inputs': string;
@@ -17,6 +16,7 @@ interface CssExports {
   'password': string;
   'password_block': string;
   'registration': string;
+  'social': string;
   'socials': string;
   'tabs': string;
 }

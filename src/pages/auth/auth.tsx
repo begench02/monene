@@ -1,8 +1,7 @@
-import { SignIn } from './sign-in/sign-in'
 import creditCard from 'assets/auth/credit-card.png'
 import moneyChart from 'assets/auth/money-chart.png'
 import styles from './auth.module.sass'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 
 export const Auth = () => {
     return (
@@ -19,7 +18,7 @@ export const Auth = () => {
                     <div className={styles.text_six}>Погашай долги</div>
                     <div className={styles.text_seven}>Организовывай</div>
                 </div>
-                <SignIn />
+                <Outlet />
             </div>
         </div>
     )
