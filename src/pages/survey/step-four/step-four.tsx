@@ -1,7 +1,7 @@
+import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 import cs from '../index.module.sass'
 import styles from './step-four.module.sass'
-import { Link } from 'react-router-dom'
 
 export const StepFour = () => {
     return (
@@ -21,17 +21,11 @@ export const StepFour = () => {
                 <div className={clsx(cs.progress_bar, cs.progress_bar__empty)}></div>
             </div>
             <h4 className={cs.question}>Где проживаете?</h4>
-            <div>
-                <div>Снимаю жилье?</div>
+            <div className={styles.answers}>
+                <div className={styles.answer}>Снимаю жилье</div>
+                <div className={styles.answer}>Собственное жилье</div>
+                <div className={styles.answer}>Ипотека</div>
             </div>
-            {/* <div className={styles.answers}>
-                <div className={styles.answer}>На себя</div>
-                <div className={styles.answer}>На партнера</div>
-                <div className={styles.answer}>Ребенок</div>
-                <div className={styles.answer}>Питомец</div>
-                <div className={styles.answer}>Подросток (13+ лет)</div>
-                <div className={styles.answer}>Помогаю родителям</div>
-            </div> */}
 
             <div className={cs.nav_buttons}>
                 <Link className={cs.button_back} to='/survey/step-three'>

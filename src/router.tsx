@@ -16,6 +16,7 @@ import {
     StepTen,
     StepThree,
     StepTwo,
+    SurveyFinish,
 } from 'pages/survey'
 import { RouteObject } from 'react-router-dom'
 
@@ -108,6 +109,10 @@ export const PagesRouter: RouteObject[] = [
             {
                 path: 'step-eleven',
                 element: <StepEleven />,
+            },
+            {
+                path: 'finish',
+                element: <SurveyFinish />,
             },
         ],
     },

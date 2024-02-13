@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import styles from './step-two.module.sass'
-import cs from '../index.module.sass'
 import clsx from 'clsx'
+import cs from '../index.module.sass'
+import styles from './step-two.module.sass'
 
 export const StepTwo = () => {
     return (
