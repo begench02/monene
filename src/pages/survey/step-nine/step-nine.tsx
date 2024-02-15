@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { progressBar } from '../utils'
 import { setSubscriptions } from 'store/survey/survey.reducer'
 import { Subscription } from 'store/survey/survey.types'
 import { useAppDispatch, useAppSelector } from 'src/hooks'
@@ -44,15 +45,8 @@ export const StepNine = () => {
 
     return (
         <div className={clsx(cs.main, styles.main)}>
-            <div className={cs.page_number}>9/11</div>
-            <div className={cs.progress}>
-                {Array.from(Array(11)).map((_, idx) => {
-                    if (idx + 1 <= step) {
-                        return <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                    }
-                    return <div className={clsx(cs.progress_bar, cs.progress_bar__empty)}></div>
-                })}
-            </div>
+            <div className={cs.step_number}>{step}/11</div>
+            {progressBar(step)}
             <h4 className={cs.question}>Какие есть подписки</h4>
             <div className={cs.answers}>
                 {answers.map((answer) => (
@@ -72,7 +66,7 @@ export const StepNine = () => {
                 <Link className={cs.button_skip} to='/survey/step-ten'>
                     Пропустить
                 </Link>
-                <Link className={cs.button_next} to='/survey/step-ten'>
+                <Link className={clsx(cs.button_next, subscriptions.length == 0 && cs.button_next__disabled)} to='/survey/step-ten'>
                     Далее
                 </Link>
             </div>

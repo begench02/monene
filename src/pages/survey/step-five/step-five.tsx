@@ -1,5 +1,6 @@
 import { HasDebt } from 'store/survey/survey.types'
 import { Link } from 'react-router-dom'
+import { progressBar } from '../utils'
 import { setHasDebts } from 'store/survey/survey.reducer'
 import { useAppSelector } from 'src/hooks'
 import { useDispatch } from 'react-redux'
@@ -33,23 +34,12 @@ const answers: { text: string; value: HasDebt }[] = [
 export const StepFive = () => {
     const dispatch = useDispatch()
     const hasDebt = useAppSelector((state) => state.survey.hasDebts)
+    const step = 5
 
     return (
-        <div className={styles.main}>
-            <div className={cs.page_number}>5/11</div>
-            <div className={cs.progress}>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__empty)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__empty)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__empty)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__empty)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__empty)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__empty)}></div>
-            </div>
+        <div className={clsx(cs.main, styles.main)}>
+            <div className={cs.step_number}>{step}/11</div>
+            {progressBar(step)}
             <h4 className={cs.question}>У вас есть долги?</h4>
             <div className={cs.answers}>
                 {answers.map((answer) => (
@@ -69,7 +59,10 @@ export const StepFive = () => {
                 <Link className={cs.button_skip} to='/survey/step-six'>
                     Пропустить
                 </Link>
-                <Link className={cs.button_next} to='/survey/step-six'>
+                <Link
+                    className={clsx(cs.button_next, hasDebt.length == 0 && cs.button_next__disabled)}
+                    to='/survey/step-six'
+                >
                     Далее
                 </Link>
             </div>

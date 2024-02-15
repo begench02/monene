@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom'
+import { progressBar } from '../utils'
+import { RegularExpense } from 'store/survey/survey.types'
+import { setRegularExpenses } from 'store/survey/survey.reducer'
+import { useAppDispatch, useAppSelector } from 'src/hooks'
 import clsx from 'clsx'
 import cs from '../index.module.sass'
 import styles from './step-seven.module.sass'
-import { Link } from 'react-router-dom'
-import { RegularExpense } from 'store/survey/survey.types'
-import { useAppDispatch, useAppSelector } from 'src/hooks'
-import { setRegularExpenses } from 'store/survey/survey.reducer'
 
 const answers: { text: string; value: RegularExpense }[] = [
     {
@@ -48,23 +49,12 @@ const answers: { text: string; value: RegularExpense }[] = [
 export const StepSeven = () => {
     const dispatch = useAppDispatch()
     const regularExpenses = useAppSelector((state) => state.survey.regularExpenses)
+    const step = 7
 
     return (
         <div className={clsx(cs.main, styles.main)}>
-            <div className={cs.page_number}>7/11</div>
-            <div className={cs.progress}>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__empty)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__empty)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__empty)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__empty)}></div>
-            </div>
+            <div className={cs.step_number}>{step}/11</div>
+            {progressBar(step)}
             <h4 className={cs.question}>Какие регулярные расходы?</h4>
             <div className={cs.answers}>
                 {answers.map((answer) => (
@@ -84,7 +74,7 @@ export const StepSeven = () => {
                 <Link className={cs.button_skip} to='/survey/step-nine'>
                     Пропустить
                 </Link>
-                <Link className={cs.button_next} to='/survey/step-nine'>
+                <Link className={clsx(cs.button_next, regularExpenses.length == 0 && cs.button_next__disabled)} to='/survey/step-nine'>
                     Далее
                 </Link>
             </div>
