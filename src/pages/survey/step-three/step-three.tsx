@@ -1,9 +1,42 @@
 import { Link } from 'react-router-dom'
+import { setSpendingOn } from 'store/survey/survey.reducer'
+import { SpendingOn } from 'store/survey/survey.types'
+import { useAppDispatch, useAppSelector } from 'src/hooks'
 import clsx from 'clsx'
 import cs from '../index.module.sass'
 import styles from './step-three.module.sass'
 
+const answers: { text: string; value: SpendingOn }[] = [
+    {
+        text: 'На себя',
+        value: 'myself',
+    },
+    {
+        text: 'На партнера',
+        value: 'partner',
+    },
+    {
+        text: 'Ребенок',
+        value: 'child',
+    },
+    {
+        text: 'Питомец',
+        value: 'pet',
+    },
+    {
+        text: 'Подросток (13+ лет)',
+        value: 'teenager',
+    },
+    {
+        text: 'Помогаю родителям',
+        value: 'parents',
+    },
+]
+
 export const StepThree = () => {
+    const dispatch = useAppDispatch()
+    const spendingOn = useAppSelector((state) => state.survey.spendingOn) || []
+
     return (
         <div className={styles.main}>
             <div className={cs.page_number}>3/11</div>
@@ -22,12 +55,15 @@ export const StepThree = () => {
             </div>
             <h4 className={cs.question}>На кого тратитесь?</h4>
             <div className={cs.answers}>
-                <div className={cs.answer}>На себя</div>
-                <div className={cs.answer}>На партнера</div>
-                <div className={cs.answer}>Ребенок</div>
-                <div className={cs.answer}>Питомец</div>
-                <div className={cs.answer}>Подросток (13+ лет)</div>
-                <div className={cs.answer}>Помогаю родителям</div>
+                {answers.map((answer) => (
+                    <div
+                        className={clsx(cs.answer, spendingOn.includes(answer.value) && cs.answer__active)}
+                        onClick={() => dispatch(setSpendingOn(answer.value))}
+                        key={answer.text}
+                    >
+                        {answer.text}
+                    </div>
+                ))}
             </div>
 
             <div className={cs.nav_buttons}>

@@ -1,38 +1,72 @@
 import { Link } from 'react-router-dom'
+import { setSubscriptions } from 'store/survey/survey.reducer'
+import { Subscription } from 'store/survey/survey.types'
+import { useAppDispatch, useAppSelector } from 'src/hooks'
 import clsx from 'clsx'
 import cs from '../index.module.sass'
 import styles from './step-nine.module.sass'
 
+const answers: { text: string; value: Subscription }[] = [
+    {
+        text: 'Яндекс Плюс',
+        value: 'yandex plus',
+    },
+    {
+        text: 'Тинькоф Про',
+        value: 'tinkoff pro',
+    },
+    {
+        text: 'СберПрайм',
+        value: 'sbep prime',
+    },
+    {
+        text: 'Telegram Premium',
+        value: 'telegram premium',
+    },
+    {
+        text: 'Ozon Premium',
+        value: 'ozon premium',
+    },
+    {
+        text: 'Литрес',
+        value: 'litres',
+    },
+    {
+        text: 'VK Музыка',
+        value: 'vk music',
+    },
+]
+
 export const StepNine = () => {
+    const dispatch = useAppDispatch()
+    const subscriptions = useAppSelector((state) => state.survey.subscriptions)
+    const step = 9
+
     return (
         <div className={clsx(cs.main, styles.main)}>
             <div className={cs.page_number}>9/11</div>
             <div className={cs.progress}>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__empty)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__empty)}></div>
-                <div className={clsx(cs.progress_bar, cs.progress_bar__empty)}></div>
+                {Array.from(Array(11)).map((_, idx) => {
+                    if (idx + 1 <= step) {
+                        return <div className={clsx(cs.progress_bar, cs.progress_bar__fill)}></div>
+                    }
+                    return <div className={clsx(cs.progress_bar, cs.progress_bar__empty)}></div>
+                })}
             </div>
             <h4 className={cs.question}>Какие есть подписки</h4>
             <div className={cs.answers}>
-                <div className={cs.answer}>Яндекс Плюс</div>
-                <div className={cs.answer}>Тинькоф Про</div>
-                <div className={cs.answer}>СберПрайм</div>
-                <div className={cs.answer}>Telegram Premium</div>
-                <div className={cs.answer}>Ozon Premium</div>
-                <div className={cs.answer}>Литрес</div>
-                <div className={cs.answer}>VK Музыка</div>
+                {answers.map((answer) => (
+                    <div
+                        className={clsx(cs.answer, subscriptions.includes(answer.value) && cs.answer__active)}
+                        onClick={() => dispatch(setSubscriptions(answer.value))}
+                    >
+                        {answer.text}
+                    </div>
+                ))}
             </div>
 
             <div className={cs.nav_buttons}>
-                <Link className={cs.button_back} to='/survey/step-eight'>
+                <Link className={cs.button_back} to='/survey/step-seven'>
                     <span>&#60;</span> Назад
                 </Link>
                 <Link className={cs.button_skip} to='/survey/step-ten'>

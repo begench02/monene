@@ -5,7 +5,6 @@ import { NewPassword } from 'pages/auth/new-password/new-password'
 import { SignIn } from 'pages/auth/sign-in/sign-in'
 import { SignUp } from 'pages/auth/sing-up/sign-up'
 import {
-    StepEight,
     StepEleven,
     StepFive,
     StepFour,
@@ -93,10 +92,6 @@ export const PagesRouter: RouteObject[] = [
             {
                 path: 'step-seven',
                 element: <StepSeven />,
-            },
-            {
-                path: 'step-eight',
-                element: <StepEight />,
             },
             {
                 path: 'step-nine',

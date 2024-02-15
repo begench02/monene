@@ -2,7 +2,7 @@
     display: grid
     position: fixed
     box-shadow: 0px 4px 40px 0px #C8C8C8
-    border-redius: 20px
+    border-radius: 20px
 
 .page_number
     width: 47px
@@ -80,3 +80,13 @@
         justify-content: center
         padding: 10px 20px
         cursor: pointer
+
+.answer__active
+    color: #1E5D68 !important
+    background: #e8f3f5
+    display: grid
+    grid-template-columns: 16px 4fr
+    gap: 10px
+    &::before
+        content: url('../../assets/auth/check-mark.png')
+        

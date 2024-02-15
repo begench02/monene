@@ -1,9 +1,30 @@
 import { Link } from 'react-router-dom'
+import { LivingPlace } from 'store/survey/survey.types'
+import { setLivingPlace } from 'store/survey/survey.reducer'
+import { useAppDispatch, useAppSelector } from 'src/hooks'
 import clsx from 'clsx'
 import cs from '../index.module.sass'
 import styles from './step-four.module.sass'
 
+const answers: { text: string; value: LivingPlace }[] = [
+    {
+        text: 'Снимаю жилье',
+        value: 'rent',
+    },
+    {
+        text: 'Собственное жилье',
+        value: 'personal dwelling',
+    },
+    {
+        text: 'Ипотека',
+        value: 'mortgage',
+    },
+]
+
 export const StepFour = () => {
+    const dispatch = useAppDispatch()
+    const livingPlace = useAppSelector((state) => state.survey.livingPlace)
+
     return (
         <div className={styles.main}>
             <div className={cs.page_number}>4/11</div>
@@ -21,10 +42,15 @@ export const StepFour = () => {
                 <div className={clsx(cs.progress_bar, cs.progress_bar__empty)}></div>
             </div>
             <h4 className={cs.question}>Где проживаете?</h4>
-            <div className={styles.answers}>
-                <div className={styles.answer}>Снимаю жилье</div>
-                <div className={styles.answer}>Собственное жилье</div>
-                <div className={styles.answer}>Ипотека</div>
+            <div className={cs.answers}>
+                {answers.map((answer) => (
+                    <div
+                        className={clsx(cs.answer, answer.value == livingPlace && cs.answer__active)}
+                        onClick={() => dispatch(setLivingPlace(answer.value))}
+                    >
+                        {answer.text}
+                    </div>
+                ))}
             </div>
 
             <div className={cs.nav_buttons}>

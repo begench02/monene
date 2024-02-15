@@ -42,9 +42,6 @@ export const webpackCommon: Configuration = {
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 type: 'asset/resource',
-                // generator: {
-                //     filename: 'assets/[hash][ext][query]',
-                // },
             },
         ],
     },
@@ -57,15 +54,15 @@ export const webpackCommon: Configuration = {
             filename: 'css/[name].[chunkhash].css',
         }),
         new ForkTsCheckerWebpackPlugin(),
-        new CopyWebpackPlugin({
-            patterns: [
-                {
-                    from: path.resolve(__dirname, '..', 'src', 'assets'),
-                    to: path.resolve(__dirname, '..', 'dist', 'assets'),
-                    noErrorOnMissing: true,
-                },
-            ],
-        }),
+        // new CopyWebpackPlugin({
+        //     patterns: [
+        //         {
+        //             from: path.resolve(__dirname, '..', 'src', 'assets'),
+        //             to: path.resolve(__dirname, '..', 'dist', 'assets'),
+        //             noErrorOnMissing: true,
+        //         },
+        //     ],
+        // }),
     ],
     resolve: {
         plugins: [new TsconfigPathsWebpackPlugin()],

@@ -1,9 +1,39 @@
+import { HasDebt } from 'store/survey/survey.types'
+import { Link } from 'react-router-dom'
+import { setHasDebts } from 'store/survey/survey.reducer'
+import { useAppSelector } from 'src/hooks'
+import { useDispatch } from 'react-redux'
 import clsx from 'clsx'
 import cs from '../index.module.sass'
 import styles from './step-five.module.sass'
-import { Link } from 'react-router-dom'
+
+const answers: { text: string; value: HasDebt }[] = [
+    {
+        text: 'Кредит',
+        value: 'credit',
+    },
+    {
+        text: 'Кредитка',
+        value: 'credit card',
+    },
+    {
+        text: 'Микрозайм',
+        value: 'microloan',
+    },
+    {
+        text: 'Личный долг',
+        value: 'personal debt',
+    },
+    {
+        text: 'Рассрочка',
+        value: 'installment',
+    },
+]
 
 export const StepFive = () => {
+    const dispatch = useDispatch()
+    const hasDebt = useAppSelector((state) => state.survey.hasDebts)
+
     return (
         <div className={styles.main}>
             <div className={cs.page_number}>5/11</div>
@@ -22,11 +52,14 @@ export const StepFive = () => {
             </div>
             <h4 className={cs.question}>У вас есть долги?</h4>
             <div className={cs.answers}>
-                <div className={cs.answer}>Кредит</div>
-                <div className={cs.answer}>Кредитка</div>
-                <div className={cs.answer}>Микрозайм</div>
-                <div className={cs.answer}>Личный долг</div>
-                <div className={cs.answer}>Рассрочка</div>
+                {answers.map((answer) => (
+                    <div
+                        className={clsx(cs.answer, hasDebt.includes(answer.value) && cs.answer__active)}
+                        onClick={() => dispatch(setHasDebts(answer.value))}
+                    >
+                        {answer.text}
+                    </div>
+                ))}
             </div>
 
             <div className={cs.nav_buttons}>

@@ -2,8 +2,41 @@ import { Link } from 'react-router-dom'
 import cs from '../index.module.sass'
 import styles from './step-six.module.sass'
 import clsx from 'clsx'
+import { useAppDispatch, useAppSelector } from 'src/hooks'
+import { Transportation } from 'store/survey/survey.types'
+import { setTransportation } from 'store/survey/survey.reducer'
+
+const answers: { text: string; value: Transportation }[] = [
+    {
+        text: 'Автомобиль',
+        value: 'car',
+    },
+    {
+        text: 'Общественный транспорт',
+        value: 'public transportation',
+    },
+    {
+        text: 'Такси',
+        value: 'taxi',
+    },
+    {
+        text: 'Пешком',
+        value: 'walk',
+    },
+    {
+        text: 'Мотоцикл',
+        value: 'motorcycle',
+    },
+    {
+        text: 'Велосипед',
+        value: 'bicycle',
+    },
+]
 
 export const StepSix = () => {
+    const dispatch = useAppDispatch()
+    const transportation = useAppSelector((state) => state.survey.transportation)
+
     return (
         <div className={styles.main}>
             <div className={cs.page_number}>6/11</div>
@@ -22,11 +55,14 @@ export const StepSix = () => {
             </div>
             <h4 className={cs.question}>Как вы передвигаетесь?</h4>
             <div className={cs.answers}>
-                <div className={cs.answer}>Кредит</div>
-                <div className={cs.answer}>Кредитка</div>
-                <div className={cs.answer}>Микрозайм</div>
-                <div className={cs.answer}>Личный долг</div>
-                <div className={cs.answer}>Рассрочка</div>
+                {answers.map((answer) => (
+                    <div
+                        className={clsx(cs.answer, answer.value == transportation && cs.answer__active)}
+                        onClick={() => dispatch(setTransportation(answer.value))}
+                    >
+                        {answer.text}
+                    </div>
+                ))}
             </div>
 
             <div className={cs.nav_buttons}>

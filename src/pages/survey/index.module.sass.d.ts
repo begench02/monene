@@ -2,6 +2,7 @@
 // Please do not change this file!
 interface CssExports {
   'answer': string;
+  'answer__active': string;
   'answers': string;
   'button_back': string;
   'button_next': string;
