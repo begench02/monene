@@ -13,8 +13,6 @@ export const NewPassword = () => {
         formState: { isValid, isDirty, touchedFields },
     } = useForm<NewPasswordForm>({ mode: 'onTouched' })
 
-    console.log({ isValid }, touchedFields)
-
     const [isPasswordVisible, setPasswordVisible] = useState(false)
 
     const changePasswordVisible = () => {

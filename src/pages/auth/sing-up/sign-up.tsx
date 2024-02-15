@@ -56,14 +56,17 @@ export const SignUp = () => {
                             })}
                         />
                         {dirtyFields.email && (
-                            <img
-                                className={styles.input_clear}
-                                src={xMark}
-                                alt='clear'
-                                onClick={() => resetField('email')}
-                            />
+                            <div className={styles.input_clear} onClick={() => resetField('email')}>
+                                &#10005;
+                            </div>
                         )}
                     </div>
+                    {/* <img
+                            className={styles.input_clear}
+                            src={xMark}
+                            alt='clear'
+                            onClick={() => resetField('email')}
+                        /> */}
                     <div className={styles.password_block}>
                         <input
                             className={clsx(styles.password, errors.password && styles.input_error)}
@@ -71,19 +74,22 @@ export const SignUp = () => {
                             type='password'
                             {...register('password', {
                                 required: 'Пароль обязателен',
-                                pattern: {
-                                    value: regex.password,
-                                    message: 'Неверный формат пароля',
-                                },
+                                // pattern: {
+                                //     value: regex.password,
+                                //     message: 'Неверный формат пароля',
+                                // },
                             })}
                         />
                         {dirtyFields.password && (
-                            <img
-                                className={styles.input_clear}
-                                src={xMark}
-                                alt='clear'
-                                onClick={() => resetField('password')}
-                            />
+                            <div className={styles.input_clear} onClick={() => resetField('password')}>
+                                &#10005;
+                            </div>
+                            // <img
+                            //     className={styles.input_clear}
+                            //     src={xMark}
+                            //     alt='clear'
+                            //     onClick={() => resetField('password')}
+                            // />
                         )}
                     </div>
                 </div>
@@ -92,7 +98,7 @@ export const SignUp = () => {
                     Зарегистрироваться
                 </button>
                 {<p className={cs.error_text}>{errors.email?.message}</p>}
-                {<p className={cs.error_text}>{errors.password?.message}</p>}
+                {<p className={cs.error_text}>{!errors.email && errors.password?.message}</p>}
 
                 {/* Social apps' authentication */}
                 <div className={styles.enter_with__block}>

@@ -1,7 +1,8 @@
-import { AccountRecovered } from 'pages/auth/account-recovery/account-recovered/account-recovered'
 import { AccountRecovery } from 'pages/auth/account-recovery/account-recovery'
+import { AccountRecoverySuccessful } from 'pages/auth/account-recovery/account-recovery-successful/account-recovery-successful'
 import { Auth } from 'pages/auth/auth'
-import { NewPassword } from 'pages/auth/new-password/new-password'
+import { NewPassword } from 'pages/auth/account-recovery/new-password/new-password'
+import { RecoveryCode } from 'pages/auth/account-recovery/recovery-code/recovery-code'
 import { SignIn } from 'pages/auth/sign-in/sign-in'
 import { SignUp } from 'pages/auth/sing-up/sign-up'
 import {
@@ -17,8 +18,8 @@ import {
     StepTwo,
     SurveyFinish,
 } from 'pages/survey'
-import { Survey } from 'pages/survey/survey'
 import { RouteObject } from 'react-router-dom'
+import { Survey } from 'pages/survey/survey'
 
 export const PagesRouter: RouteObject[] = [
     {
@@ -37,31 +38,25 @@ export const PagesRouter: RouteObject[] = [
                 path: 'sign-up',
                 element: <SignUp />,
             },
-            // {
-            //     path: 'account-recovery',
-            //     element: <AccountRecovery />,
-            // },
-            // {
-            //     path: 'account-recovery-successful',
-            //     element: <AccountRecovered />,
-            // },
-            // {
-            //     path: 'new-password',
-            //     element: <NewPassword />,
-            // },
         ],
     },
     {
-        path: 'account-recovery',
+        path: '/account-recovery',
         element: <AccountRecovery />,
-    },
-    {
-        path: 'account-recovery-successful',
-        element: <AccountRecovered />,
-    },
-    {
-        path: 'new-password',
-        element: <NewPassword />,
+        children: [
+            {
+                path: 'new-password',
+                element: <NewPassword />,
+            },
+            {
+                path: 'recovery-code',
+                element: <RecoveryCode />,
+            },
+            {
+                path: 'successful',
+                element: <AccountRecoverySuccessful />,
+            },
+        ],
     },
     {
         path: 'survey',
