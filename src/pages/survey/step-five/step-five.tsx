@@ -46,6 +46,7 @@ export const StepFive = () => {
                     <div
                         className={clsx(cs.answer, hasDebt.includes(answer.value) && cs.answer__active)}
                         onClick={() => dispatch(setHasDebts(answer.value))}
+                        key={answer.value}
                     >
                         {answer.text}
                     </div>

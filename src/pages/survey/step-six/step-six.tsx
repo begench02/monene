@@ -49,6 +49,7 @@ export const StepSix = () => {
                     <div
                         className={clsx(cs.answer, answer.value == transportation && cs.answer__active)}
                         onClick={() => dispatch(setTransportation(answer.value))}
+                        key={answer.value}
                     >
                         {answer.text}
                     </div>

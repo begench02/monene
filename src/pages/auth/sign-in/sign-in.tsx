@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { regex } from 'src/utils/regex'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import clsx from 'clsx'
+import cs from '../auth.module.sass'
 import google from 'assets/auth/google.png'
 import logo from 'assets/logo.png'
 import styles from './sign-in.module.sass'
@@ -36,7 +37,9 @@ export const SignIn = () => {
                 </div>
                 <div className={styles.tabs}>
                     <div className={styles.enter}>Войти</div>
-                    <Link className={styles.registration} to='/auth/sign-up'>Регистрация</Link>
+                    <Link className={styles.registration} to='/auth/sign-up'>
+                        Регистрация
+                    </Link>
                 </div>
                 <div className={styles.inputs}>
                     <div className={styles.email_block}>
@@ -44,7 +47,13 @@ export const SignIn = () => {
                             className={clsx(styles.email, errors.email && styles.input_error)}
                             placeholder='Ваш e-mail'
                             type='email'
-                            {...register('email', { required: true, pattern: regex.email })}
+                            {...register('email', {
+                                required: 'Email обязателен',
+                                pattern: {
+                                    value: regex.email,
+                                    message: 'Неверный формат email-а',
+                                },
+                            })}
                         />
                         {dirtyFields.email && (
                             <img
@@ -60,7 +69,13 @@ export const SignIn = () => {
                             className={clsx(styles.password, errors.password && styles.input_error)}
                             placeholder='Пароль'
                             type='password'
-                            {...register('password', { required: true, pattern: regex.password })}
+                            {...register('password', {
+                                required: 'Пароль обязателен',
+                                pattern: {
+                                    value: regex.password,
+                                    message: 'Неверный формат пароля',
+                                },
+                            })}
                         />
                         {dirtyFields.password && (
                             <img
@@ -78,6 +93,8 @@ export const SignIn = () => {
                 <button className={clsx(styles.enter_block, isValid && styles.enter_block_active)} disabled={!isValid}>
                     Войти
                 </button>
+                {<p className={cs.error_text}>{errors.email?.message}</p>}
+                {<p className={cs.error_text}>{errors.password?.message}</p>}
 
                 {/* Social apps' authentication */}
                 <div className={styles.enter_with__block}>

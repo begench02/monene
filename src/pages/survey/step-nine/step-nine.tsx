@@ -53,6 +53,7 @@ export const StepNine = () => {
                     <div
                         className={clsx(cs.answer, subscriptions.includes(answer.value) && cs.answer__active)}
                         onClick={() => dispatch(setSubscriptions(answer.value))}
+                        key={answer.value}
                     >
                         {answer.text}
                     </div>
@@ -66,7 +67,10 @@ export const StepNine = () => {
                 <Link className={cs.button_skip} to='/survey/step-ten'>
                     Пропустить
                 </Link>
-                <Link className={clsx(cs.button_next, subscriptions.length == 0 && cs.button_next__disabled)} to='/survey/step-ten'>
+                <Link
+                    className={clsx(cs.button_next, subscriptions.length == 0 && cs.button_next__disabled)}
+                    to='/survey/step-ten'
+                >
                     Далее
                 </Link>
             </div>

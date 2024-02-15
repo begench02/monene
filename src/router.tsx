@@ -17,6 +17,7 @@ import {
     StepTwo,
     SurveyFinish,
 } from 'pages/survey'
+import { Survey } from 'pages/survey/survey'
 import { RouteObject } from 'react-router-dom'
 
 export const PagesRouter: RouteObject[] = [
@@ -64,6 +65,7 @@ export const PagesRouter: RouteObject[] = [
     },
     {
         path: 'survey',
+        element: <Survey />,
         children: [
             {
                 path: 'step-one',

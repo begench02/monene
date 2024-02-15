@@ -53,6 +53,7 @@ export const StepEleven = () => {
                     <div
                         className={clsx(cs.answer, additional.includes(answer.value) && cs.answer__active)}
                         onClick={() => dispatch(setAdditional(answer.value))}
+                        key={answer.value}
                     >
                         {answer.text}
                     </div>
@@ -66,7 +67,10 @@ export const StepEleven = () => {
                 <Link className={cs.button_skip} to='/survey/finish'>
                     Пропустить
                 </Link>
-                <Link className={clsx(cs.button_next, additional.length == 0 && cs.button_next__disabled)} to='/survey/finish'>
+                <Link
+                    className={clsx(cs.button_next, additional.length == 0 && cs.button_next__disabled)}
+                    to='/survey/finish'
+                >
                     Далее
                 </Link>
             </div>

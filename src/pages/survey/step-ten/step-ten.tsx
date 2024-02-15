@@ -57,6 +57,7 @@ export const StepTen = () => {
                     <div
                         className={clsx(cs.answer, goals.includes(answer.value) && cs.answer__active)}
                         onClick={() => dispatch(setGoals(answer.value))}
+                        key={answer.value}
                     >
                         {answer.text}
                     </div>
@@ -70,7 +71,10 @@ export const StepTen = () => {
                 <Link className={cs.button_skip} to='/survey/step-eleven'>
                     Пропустить
                 </Link>
-                <Link className={clsx(cs.button_next, goals.length == 0 && cs.button_next__disabled)} to='/survey/step-eleven'>
+                <Link
+                    className={clsx(cs.button_next, goals.length == 0 && cs.button_next__disabled)}
+                    to='/survey/step-eleven'
+                >
                     Далее
                 </Link>
             </div>

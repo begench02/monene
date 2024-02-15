@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { regex } from 'src/utils/regex'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import clsx from 'clsx'
+import cs from '../auth.module.sass'
 import google from 'assets/auth/google.png'
 import logo from 'assets/logo.png'
 import styles from './sign-up.module.sass'
@@ -46,7 +47,13 @@ export const SignUp = () => {
                             className={clsx(styles.email, errors.email && styles.input_error)}
                             placeholder='Ваш e-mail'
                             type='email'
-                            {...register('email', { required: true, pattern: regex.email })}
+                            {...register('email', {
+                                required: 'Email обязателен',
+                                pattern: {
+                                    value: regex.email,
+                                    message: 'Неверный формат email-а',
+                                },
+                            })}
                         />
                         {dirtyFields.email && (
                             <img
@@ -62,7 +69,13 @@ export const SignUp = () => {
                             className={clsx(styles.password, errors.password && styles.input_error)}
                             placeholder='Пароль'
                             type='password'
-                            {...register('password', { required: true, pattern: regex.password })}
+                            {...register('password', {
+                                required: 'Пароль обязателен',
+                                pattern: {
+                                    value: regex.password,
+                                    message: 'Неверный формат пароля',
+                                },
+                            })}
                         />
                         {dirtyFields.password && (
                             <img
@@ -74,9 +87,12 @@ export const SignUp = () => {
                         )}
                     </div>
                 </div>
+
                 <button className={clsx(styles.enter_block, isValid && styles.enter_block_active)} disabled={!isValid}>
                     Зарегистрироваться
                 </button>
+                {<p className={cs.error_text}>{errors.email?.message}</p>}
+                {<p className={cs.error_text}>{errors.password?.message}</p>}
 
                 {/* Social apps' authentication */}
                 <div className={styles.enter_with__block}>

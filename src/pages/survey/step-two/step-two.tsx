@@ -38,14 +38,12 @@ export const StepTwo = () => {
             <h4 className={cs.question}>Какой у вас финансовый статус?</h4>
             <div className={styles.answers}>
                 {answers.map((answer) => (
-                    <div>
-                        <div
-                            className={clsx(styles.answer, answer.value == currentFinancialStatus && cs.answer__active)}
-                            onClick={() => dispatch(setFinancialStatus(answer.value))}
-                            key={answer.text}
-                        >
-                            {answer.text}
-                        </div>
+                    <div
+                        className={clsx(styles.answer, answer.value == currentFinancialStatus && cs.answer__active)}
+                        onClick={() => dispatch(setFinancialStatus(answer.value))}
+                        key={answer.value}
+                    >
+                        {answer.text}
                     </div>
                 ))}
             </div>

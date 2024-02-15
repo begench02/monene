@@ -37,6 +37,7 @@ export const StepFour = () => {
                     <div
                         className={clsx(cs.answer, answer.value == livingPlace && cs.answer__active)}
                         onClick={() => dispatch(setLivingPlace(answer.value))}
+                        key={answer.value}
                     >
                         {answer.text}
                     </div>

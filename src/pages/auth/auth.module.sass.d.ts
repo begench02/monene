@@ -3,6 +3,7 @@
 interface CssExports {
   'container': string;
   'credit_card': string;
+  'error_text': string;
   'main': string;
   'money_chart': string;
   'text_box': string;
