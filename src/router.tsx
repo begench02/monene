@@ -60,6 +60,10 @@ export const PagesRouter: RouteObject[] = [
                 path: 'successful',
                 element: <AccountRecoverySuccessful />,
             },
+	    {
+	    	path: '',
+		element: <Navigate to='recovery-code' replace />
+	    }
         ],
     },
     {
