@@ -27,7 +27,7 @@ export const RecoveryCode = () => {
             <Link className={styles.resend_code} to='#'>
                 Выслать код повторно
             </Link>
-            <Link className={styles.go_back} to='#'>
+            <Link className={styles.go_back} to='/auth/sign-in'>
                 Назад
             </Link>
         </div>

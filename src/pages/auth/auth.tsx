@@ -1,7 +1,7 @@
 import creditCard from 'assets/auth/credit-card.png'
 import moneyChart from 'assets/auth/money-chart.png'
 import styles from './auth.module.sass'
-import { Outlet } from 'react-router-dom'
+import { Outlet, redirect } from 'react-router-dom'
 
 export const Auth = () => {
     return (

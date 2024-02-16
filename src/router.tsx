@@ -18,7 +18,7 @@ import {
     StepTwo,
     SurveyFinish,
 } from 'pages/survey'
-import { RouteObject } from 'react-router-dom'
+import { Navigate, RouteObject } from 'react-router-dom'
 import { Survey } from 'pages/survey/survey'
 
 export const PagesRouter: RouteObject[] = [
@@ -37,6 +37,10 @@ export const PagesRouter: RouteObject[] = [
             {
                 path: 'sign-up',
                 element: <SignUp />,
+            },
+            {
+                path: '',
+                element: <Navigate to='/auth/sign-in' replace />,
             },
         ],
     },
