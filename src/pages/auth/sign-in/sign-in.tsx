@@ -3,13 +3,12 @@ import { regex } from 'src/utils/regex'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import clsx from 'clsx'
 import cs from '../auth.module.sass'
-import google from 'assets/auth/google.png'
-import logo from 'assets/logo.png'
+import google from 'assets/auth/google.svg'
+import logo from 'assets/logo.svg'
 import styles from './sign-in.module.sass'
-import telegram from 'assets/auth/telegram.png'
-import vk from 'assets/auth/vk.png'
-import xMark from 'assets/auth/x-mark.png'
-import yandex from 'assets/auth/yandex.png'
+import telegram from 'assets/auth/telegram.svg'
+import vk from 'assets/auth/vk.svg'
+import yandex from 'assets/auth/yandex.svg'
 
 export const SignIn = () => {
     const {
@@ -108,7 +107,7 @@ export const SignIn = () => {
                 </div>
                 <div className={styles.socials}>
                     <div>
-                        <img src={vk} alt='vk' />
+                        <img className={styles.vk} src={vk} alt='vk' />
                     </div>
                     <div>
                         <img src={telegram} alt='telegram' />

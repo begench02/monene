@@ -19,6 +19,7 @@ interface CssExports {
   'registration': string;
   'socials': string;
   'tabs': string;
+  'vk': string;
 }
 export const cssExports: CssExports;
 export default cssExports;
