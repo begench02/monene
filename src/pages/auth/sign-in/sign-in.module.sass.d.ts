@@ -17,9 +17,9 @@ interface CssExports {
   'password': string;
   'password_block': string;
   'registration': string;
+  'social': string;
   'socials': string;
   'tabs': string;
-  'vk': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

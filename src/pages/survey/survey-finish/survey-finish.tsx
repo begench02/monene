@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import sticker from 'assets/happy-sticker.svg'
+import sticker from 'assets/happy-sticker.png'
 import styles from './survey-finish.module.sass'
 
 export const SurveyFinish = () => {

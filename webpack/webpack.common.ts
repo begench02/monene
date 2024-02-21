@@ -1,19 +1,16 @@
 import { Configuration } from 'webpack'
-import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import path from 'path'
 import TsconfigPathsWebpackPlugin from 'tsconfig-paths-webpack-plugin'
 
 export const webpackCommon: Configuration = {
-    entry: path.resolve(__dirname, '..', 'src', 'main.tsx'),
-    target: 'web',
+    entry: ['./src/main.tsx'],
     output: {
-        publicPath: '/',
-        path: path.resolve(__dirname, '..', 'dist'),
-        filename: 'js/[name].[chunkhash].js',
         clean: true,
+        filename: 'js/[name].[chunkhash].js',
+        chunkFilename: 'js/[name].[chunkhash].chunk.js',
+        publicPath: '/',
     },
     module: {
         rules: [
@@ -23,11 +20,11 @@ export const webpackCommon: Configuration = {
                     {
                         loader: 'ts-loader',
                         options: {
-                            configFile: '../tsconfig.json',
+                            transpileOnly: true,
                         },
                     },
                 ],
-                exclude: /node_modules/,
+                exclude: /(node_modules|\.webpack)/,
             },
             {
                 test: /\.s[ac]ss$/i,
@@ -40,35 +37,46 @@ export const webpackCommon: Configuration = {
                 ],
             },
             {
-                test: /\.(jpe?g|png|gif|svg)$/i,
+                test: /\.(png|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
+            },
+            {
+                test: /\.svg$/,
+                use: [{ loader: '@svgr/webpack', options: { icon: true } }],
             },
         ],
     },
     plugins: [
+        new ForkTsCheckerWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '..', 'index.html'),
+            template: 'src/index.html',
             inject: true,
         }),
         new MiniCssExtractPlugin({
-            filename: 'css/[name].[chunkhash].css',
+            filename: 'css/[name].[contenthash:8].css',
+            chunkFilename: 'css/[name].[contenthash:8].chunk.css',
         }),
-        new ForkTsCheckerWebpackPlugin(),
-        // new CopyWebpackPlugin({
-        //     patterns: [
-        //         {
-        //             from: path.resolve(__dirname, '..', 'src', 'assets'),
-        //             to: path.resolve(__dirname, '..', 'dist', 'assets'),
-        //             noErrorOnMissing: true,
-        //         },
-        //     ],
-        // }),
     ],
     resolve: {
         plugins: [new TsconfigPathsWebpackPlugin()],
         extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.scss', '.sass'],
     },
-    watchOptions: {
-        ignored: /node_modules/,
+    optimization: {
+        minimize: true,
+        sideEffects: true,
+        concatenateModules: true,
+        runtimeChunk: 'single',
+        splitChunks: {
+            chunks: 'all',
+            maxInitialRequests: 10,
+            minSize: 0,
+            cacheGroups: {
+                vendor: {
+                    name: 'vendors',
+                    test: /[\\/]node_modules[\\/]/,
+                    chunks: 'all',
+                },
+            },
+        },
     },
 }

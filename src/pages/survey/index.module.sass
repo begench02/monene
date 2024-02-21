@@ -2,21 +2,20 @@
     display: grid
     position: fixed
     box-shadow: 0px 4px 40px 0px #C8C8C8
-    border-radius: 20px
+    // border-radius: 20px
     padding: 42px 30px
     background-color: #fff
 
 .step_number
+    display: grid
+    align-items: center
+    justify-content: center
     width: 47px
     height: 31px
+    margin-bottom: 24px
     background-color: #E2F4F8
-    display: grid
-    justify-content: center
-    align-items: center
-    border-radius: 4px
     color: #383838
     font-weight: 500
-    margin-bottom: 24px
 
 .question
     color: #1E2223
@@ -38,34 +37,29 @@
         background-color: #F5F8FD
 
 .nav_buttons
-    align-self: end
     display: flex
+    align-self: end
     align-items: center
-    gap: 10px
     justify-content: end
+    gap: 10px
     .button_next
-        color: #fff
+        display: block
         width: 95px
         height: 45px
-        background-color: #1E5D68
         padding: 12px 24px
+        color: #fff
+        background-color: #1E5D68
         text-decoration: none
-        border-radius: 100px
-
     .button_skip
-        color: #1E5D68
         margin-right: 20px
-
+        color: #1E5D68
     .button_back
-        background: linear-gradient(0deg, #556A7F, #556A7F) linear-gradient(0deg, #F7F7F7, #F7F7F7)
-        padding: 12px 24px 12px 20px
-        font-size: 15px
-        font-weight: 400
-        color: #556A7F
-        border: 1px solid #556A7F
-        border-radius: 100px
         margin-right: auto
-
+        padding: 12px 24px 12px 20px
+        background: #556A7F
+        color: #556A7F !important
+        &::before
+            background: #F6F6F6
     .button_next__disabled
         pointer-events: none
         background-color: #F6F6F6
@@ -77,19 +71,20 @@
     align-items: center
     gap: 10px
     .answer
-        border: 1px solid #B7B7B7
-        border-radius: 100px
         display: grid
         align-items: center
         justify-content: center
         padding: 10px 20px
         cursor: pointer
+        background: #B7B7B7
+        &::before
+            background: #fff
 
 .answer__active
-    color: #1E5D68 !important
-    background: #e8f3f5
     display: grid
-    grid-template-columns: 16px 4fr
     gap: 10px
+    color: #1E5D68 !important
+    grid-template-columns: 16px 1fr
     &::before
-        content: url('../../assets/auth/check-mark.png')
+        background: #e8f3f5 !important
+ 

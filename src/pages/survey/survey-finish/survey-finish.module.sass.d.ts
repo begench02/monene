@@ -2,6 +2,7 @@
 // Please do not change this file!
 interface CssExports {
   'btn': string;
+  'happy_steaker': string;
   'header': string;
   'main': string;
   'text': string;

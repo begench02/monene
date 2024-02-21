@@ -1,28 +1,18 @@
 {
     "compilerOptions": {
+        "outDir": "dist",
+        "module": "ESNext",
+        "target": "es5",
+        "jsx": "react-jsx",
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
         "allowJs": true,
+        "baseUrl": ".",
         "esModuleInterop": true,
-        "moduleDetection": "force",
+        "lib": ["es2022", "DOM", "DOM.Iterable"],
         "resolveJsonModule": true,
         "skipLibCheck": true,
-        "allowSyntheticDefaultImports": true,
-        "allowImportingTsExtensions": true,
-        "noEmit": true,
-        "target": "es2022",
-
-        "noUncheckedIndexedAccess": true,
-        "strict": true,
-
-        "moduleResolution": "NodeNext",
-        "module": "NodeNext",
-        "outDir": "dist",
         "sourceMap": true,
-
-        "lib": ["es2022", "DOM", "DOM.Iterable"],
-
-        "jsx": "react-jsx",
-
-        "baseUrl": ".",
         "paths": {
             "assets/*": ["./src/assets/*"],
             "pages/*": ["./src/pages/*"],

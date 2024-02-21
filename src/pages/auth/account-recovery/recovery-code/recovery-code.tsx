@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './recovery-code.module.sass'
+import { Squircle } from 'corner-smoothing'
 
 export const RecoveryCode = () => {
     const [code, setCode] = useState('')
@@ -23,7 +24,9 @@ export const RecoveryCode = () => {
                     &#10005;
                 </div>
             </div>
-            <button className={styles.confirm}>Подтвердить</button>
+            <Squircle cornerRadius={10} as='button' className={styles.confirm}>
+                Подтвердить
+            </Squircle>
             <Link className={styles.resend_code} to='#'>
                 Выслать код повторно
             </Link>

@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from 'src/hooks'
 import clsx from 'clsx'
 import cs from '../index.module.sass'
 import styles from './step-one.module.sass'
+import { Squircle } from 'corner-smoothing'
 
 export const StepOne = () => {
     const dispatch = useAppDispatch()
@@ -14,8 +15,8 @@ export const StepOne = () => {
     const step = 1
 
     return (
-        <div className={clsx(cs.main, styles.main)}>
-            <div className={cs.step_number}>{step}/11</div>
+        <Squircle cornerRadius={15} className={clsx(cs.main, styles.main)}>
+            <Squircle cornerRadius={8} className={cs.step_number}>{step}/11</Squircle>
             {progressBar(step)}
             <h4 className={cs.question}>Как вас зовут?</h4>
             <div className={styles.answer}>
@@ -36,10 +37,12 @@ export const StepOne = () => {
                 <Link to='/survey/step-two' className={cs.button_skip}>
                     Пропустить
                 </Link>
-                <Link to='/survey/step-two' className={clsx(cs.button_next, !name && cs.button_next__disabled)}>
-                    Далее
-                </Link>
+                <Squircle cornerRadius={20}>
+                    <Link to='/survey/step-two' className={clsx(cs.button_next, !name && cs.button_next__disabled)}>
+                        Далее
+                    </Link>
+                </Squircle>
             </div>
-        </div>
+        </Squircle>
     )
 }

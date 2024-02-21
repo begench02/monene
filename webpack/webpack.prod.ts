@@ -7,40 +7,41 @@ import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin'
 const webpackProd: Configuration = merge(webpackCommon, {
     mode: 'production',
     stats: 'errors-warnings',
+    devtool: 'source-map',
     performance: {
         maxEntrypointSize: 512000,
         maxAssetSize: 512000,
     },
-    optimization: {
-        minimize: true,
-        minimizer: [
-            new CssMinimizerPlugin(),
-            new ImageMinimizerPlugin({
-                minimizer: {
-                    implementation: ImageMinimizerPlugin.imageminMinify,
-                    options: {
-                        plugins: [
-                            ['gifsicle', { interlaced: true }],
-                            ['jpegtran', { progressive: true }],
-                            ['optipng', { optimizationLevel: 5 }],
-                            [
-                                'svgo',
-                                {
-                                    plugins: [
-                                        {
-                                            name: 'removeViewBox',
-                                            active: false,
-                                        },
-                                    ],
-                                },
-                            ],
-                        ],
-                    },
-                },
-            }),
-        ],
-        runtimeChunk: true,
-    },
+    // optimization: {
+    //     minimize: true,
+    //     minimizer: [
+    //         new CssMinimizerPlugin(),
+    //         new ImageMinimizerPlugin({
+    //             minimizer: {
+    //                 implementation: ImageMinimizerPlugin.imageminMinify,
+    //                 options: {
+    //                     plugins: [
+    //                         ['gifsicle', { interlaced: true }],
+    //                         ['jpegtran', { progressive: true }],
+    //                         ['optipng', { optimizationLevel: 5 }],
+    //                         [
+    //                             'svgo',
+    //                             {
+    //                                 plugins: [
+    //                                     {
+    //                                         name: 'removeViewBox',
+    //                                         active: false,
+    //                                     },
+    //                                 ],
+    //                             },
+    //                         ],
+    //                     ],
+    //                 },
+    //             },
+    //         }),
+    //     ],
+    //     runtimeChunk: true,
+    // },
 })
 
 export default webpackProd

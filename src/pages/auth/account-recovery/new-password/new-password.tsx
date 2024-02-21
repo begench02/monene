@@ -5,6 +5,7 @@ import eyeSlash from 'assets/auth/eye-slash.png'
 import styles from './new-password.module.sass'
 import { useState } from 'react'
 import xMark from 'assets/auth/x-mark.png'
+import { Squircle } from 'corner-smoothing'
 
 export const NewPassword = () => {
     const {
@@ -94,9 +95,10 @@ export const NewPassword = () => {
                         ) : null}
                     </div>
                 </div>
-                <button className={styles.confirm} disabled={!isValid}>
+                {/* @ts-ignore */}
+                <Squircle className={styles.confirm} as='button' cornerRadius={10} disabled={!isValid}>
                     Подтвердить
-                </button>
+                </Squircle>
             </form>
         </div>
     )

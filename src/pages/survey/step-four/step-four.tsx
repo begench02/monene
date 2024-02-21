@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom'
 import { LivingPlace } from 'store/survey/survey.types'
 import { progressBar } from '../utils'
 import { setLivingPlace } from 'store/survey/survey.reducer'
+import { Squircle } from 'corner-smoothing'
 import { useAppDispatch, useAppSelector } from 'src/hooks'
+import checkMark from 'assets/auth/check-mark.png'
 import clsx from 'clsx'
 import cs from '../index.module.sass'
 import styles from './step-four.module.sass'
@@ -28,33 +30,48 @@ export const StepFour = () => {
     const step = 4
 
     return (
-        <div className={clsx(cs.main, styles.main)}>
-            <div className={cs.step_number}>{step}/11</div>
+        <Squircle cornerRadius={15} className={clsx(cs.main, styles.main)}>
+            <Squircle cornerRadius={8} className={cs.step_number}>{step}/11</Squircle>
             {progressBar(step)}
             <h4 className={cs.question}>Где проживаете?</h4>
             <div className={cs.answers}>
                 {answers.map((answer) => (
-                    <div
+                    <Squircle
+                        cornerRadius={13}
+                        borderWidth={1}
                         className={clsx(cs.answer, answer.value == livingPlace && cs.answer__active)}
                         onClick={() => dispatch(setLivingPlace(answer.value))}
                         key={answer.value}
                     >
+                        {answer.value == livingPlace && <img src={checkMark} />}
                         {answer.text}
-                    </div>
+                    </Squircle>
                 ))}
             </div>
 
             <div className={cs.nav_buttons}>
-                <Link className={cs.button_back} to='/survey/step-three'>
+                <Squircle
+                    as={Link}
+                    // @ts-ignore
+                    to='/survey/step-three'
+                    cornerRadius={20}
+                    borderWidth={1}
+                    className={cs.button_back}
+                >
                     <span>&#60;</span> Назад
-                </Link>
+                </Squircle>
                 <Link className={cs.button_skip} to='/survey/step-five'>
                     Пропустить
                 </Link>
-                <Link className={clsx(cs.button_next, livingPlace ?? cs.button_next__disabled)} to='/survey/step-five'>
-                    Далее
-                </Link>
+                <Squircle cornerRadius={20}>
+                    <Link
+                        className={clsx(cs.button_next, livingPlace ?? cs.button_next__disabled)}
+                        to='/survey/step-five'
+                    >
+                        Далее
+                    </Link>
+                </Squircle>
             </div>
-        </div>
+        </Squircle>
     )
 }
