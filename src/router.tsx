@@ -1,10 +1,16 @@
 import { AccountRecovery } from 'pages/auth/account-recovery/account-recovery'
 import { AccountRecoverySuccessful } from 'pages/auth/account-recovery/account-recovery-successful/account-recovery-successful'
 import { Auth } from 'pages/auth/auth'
+import { Budget } from 'pages/budget/budget'
+import { Fact } from 'pages/fact/fact'
+import { MainLayout } from './components/main-layout/main-layout'
+import { Navigate, RouteObject } from 'react-router-dom'
 import { NewPassword } from 'pages/auth/account-recovery/new-password/new-password'
+import { Plan } from 'pages/plan/plan'
 import { RecoveryCode } from 'pages/auth/account-recovery/recovery-code/recovery-code'
 import { SignIn } from 'pages/auth/sign-in/sign-in'
 import { SignUp } from 'pages/auth/sing-up/sign-up'
+import { Survey } from 'pages/survey/survey'
 import {
     StepEleven,
     StepFive,
@@ -18,13 +24,34 @@ import {
     StepTwo,
     SurveyFinish,
 } from 'pages/survey'
-import { Navigate, RouteObject } from 'react-router-dom'
-import { Survey } from 'pages/survey/survey'
+import { Consultation } from 'pages/consultation/consultation'
 
 export const PagesRouter: RouteObject[] = [
     {
         path: '',
-        element: <div>Main page</div>,
+        element: <MainLayout />,
+        children: [
+            {
+                path: '/budget',
+                element: <Budget />,
+            },
+            {
+                path: '/plan',
+                element: <Plan />,
+            },
+            {
+                path: '/fact',
+                element: <Fact />,
+            },
+            {
+                path: '/consultation',
+                element: <Consultation />,
+            },
+            {
+                path: '',
+                element: <Navigate to='/budget' replace />,
+            },
+        ],
     },
     {
         path: '/auth',
@@ -60,10 +87,10 @@ export const PagesRouter: RouteObject[] = [
                 path: 'successful',
                 element: <AccountRecoverySuccessful />,
             },
-	    {
-	    	path: '',
-		element: <Navigate to='recovery-code' replace />
-	    }
+            {
+                path: '',
+                element: <Navigate to='recovery-code' replace />,
+            },
         ],
     },
     {
