@@ -37,7 +37,7 @@ export const StepFour = () => {
             <div className={cs.answers}>
                 {answers.map((answer) => (
                     <Squircle
-                        cornerRadius={13}
+                        cornerRadius={20}
                         borderWidth={1}
                         className={clsx(cs.answer, answer.value == livingPlace && cs.answer__active)}
                         onClick={() => dispatch(setLivingPlace(answer.value))}

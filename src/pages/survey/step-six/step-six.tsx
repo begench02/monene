@@ -49,7 +49,7 @@ export const StepSix = () => {
             <div className={cs.answers}>
                 {answers.map((answer) => (
                     <Squircle
-                        cornerRadius={13}
+                        cornerRadius={20}
                         borderWidth={1}
                         className={clsx(cs.answer, answer.value == transportation && cs.answer__active)}
                         onClick={() => dispatch(setTransportation(answer.value))}

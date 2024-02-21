@@ -46,7 +46,7 @@ export const StepFive = () => {
             <div className={cs.answers}>
                 {answers.map((answer) => (
                     <Squircle
-                        cornerRadius={13}
+                        cornerRadius={20}
                         borderWidth={1}
                         className={clsx(cs.answer, hasDebt.includes(answer.value) && cs.answer__active)}
                         onClick={() => dispatch(setHasDebts(answer.value))}
