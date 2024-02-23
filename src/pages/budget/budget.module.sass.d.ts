@@ -4,6 +4,9 @@ interface CssExports {
   'add_circle': string;
   'content': string;
   'income': string;
+  'income_content': string;
+  'income_content_header': string;
+  'income_content_header_items': string;
   'income_header': string;
   'income_header_month': string;
   'income_header_subtitle': string;

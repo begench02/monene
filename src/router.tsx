@@ -25,6 +25,7 @@ import {
     SurveyFinish,
 } from 'pages/survey'
 import { Consultation } from 'pages/consultation/consultation'
+import { SuggestSubscription } from 'pages/suggest-subscription/suggest-subscription'
 
 export const PagesRouter: RouteObject[] = [
     {
@@ -32,7 +33,7 @@ export const PagesRouter: RouteObject[] = [
         element: <MainLayout />,
         children: [
             {
-                path: '/budget',
+                path: '/budget/',
                 element: <Budget />,
             },
             {
@@ -142,5 +143,9 @@ export const PagesRouter: RouteObject[] = [
                 element: <SurveyFinish />,
             },
         ],
+    },
+    {
+        path: 'suggest-subscription',
+        element: <SuggestSubscription />,
     },
 ]

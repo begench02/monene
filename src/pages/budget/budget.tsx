@@ -1,7 +1,8 @@
+import { BudgetSection } from './budget-section/expenses-section'
+import { IncomeSection } from './income-section/income-section'
 import { Squircle } from 'corner-smoothing'
 import AddCircle from 'assets/add-circle.svg'
 import styles from './budget.module.sass'
-import { BudgetSection } from './budget-section/budget-section'
 
 export const Budget = () => {
     return (
@@ -13,7 +14,7 @@ export const Budget = () => {
                     <div className={styles.income_header}>
                         <div className={styles.income_header_title}>
                             <h3>Расходы</h3>
-                            <Squircle cornerRadius={15} className={styles.income_header_month}>
+                            <Squircle cornerRadius={8} className={styles.income_header_month}>
                                 80 000 &#8381;/мес
                             </Squircle>
                         </div>
@@ -26,6 +27,7 @@ export const Budget = () => {
                             </Squircle>
                         </div>
                     </div>
+                    <BudgetSection />
                     <BudgetSection />
                 </div>
                 <div className={styles.income}>
@@ -43,6 +45,32 @@ export const Budget = () => {
                             </Squircle>
                         </div>
                     </div>
+                    <IncomeSection type='main' />
+                    <IncomeSection type='additional' />
+                    {/* <div className={styles.income_content}>
+                        <div>💰 Основные</div>
+                        <div className={styles.income_content_header}>
+                            <div>Название</div>
+                            <div>Число</div>
+                            <div>Сумма</div>
+                        </div>
+                        <div>
+                            <div className={styles.income_content_header_items}>
+                                <div>Зарплата</div>
+                                <div>5 числа</div>
+                                <div style={{ display: 'flex', gap: '5px' }}>
+                                    30 000 ₽ <More width={25} height={25} />
+                                </div>
+                            </div>
+                            <div className={styles.income_content_header_items}>
+                                <div>Аванс</div>
+                                <div>20 числа</div>
+                                <div style={{ display: 'flex', gap: '5px' }}>
+                                    20 000 ₽ <More width={25} height={25} />
+                                </div>
+                            </div>
+                        </div>
+                    I</div> */}
                 </div>
             </div>
         </div>

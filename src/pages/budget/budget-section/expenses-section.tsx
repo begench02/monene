@@ -1,6 +1,11 @@
 import { Squircle } from 'corner-smoothing'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import EmojiPicker from 'emoji-picker-react'
 import More from 'assets/more.svg'
-import styles from './budget-section.module.sass'
+import styles from './expenses-section.module.sass'
+import { EditSectionName } from './edit-section-name/edit-section-name'
+import MoreBlue from 'assets/more-blue.svg'
+import { useOutsideClick } from 'src/hooks/useOutsideClick.hook'
 
 const items = [
     {
@@ -20,11 +25,38 @@ const items = [
     },
 ]
 
+let emoji = null
 export const BudgetSection = () => {
+    const [isEmojiMenuOpen, setEmojiMenuOpen] = useState(false)
+    const [isEditSectionNameOpen, setEditSectionName] = useState(false)
+
+    const handleEmojiClick = (data) => {
+        emoji = data.emoji
+        setEmojiMenuOpen(false)
+    }
+
+    const editSectionNameRef = useRef()
+    useEffect(() => {
+        let handle = (e) => {
+            // @ts-ignore
+            if (!editSectionNameRef.current.contains(e.target)) {
+                setEditSectionName(false)
+            }
+        }
+
+        document.addEventListener('mousedown', handle)
+    })
+
     return (
         <Squircle className={styles.main} cornerRadius={5}>
             <div className={styles.header}>
-                <div>🏠 Жильё</div>
+                <EmojiPicker open={isEmojiMenuOpen} onEmojiClick={handleEmojiClick} />
+                <div ref={editSectionNameRef}>
+                    <div className={styles.header_title_text}>
+                        {emoji} Жильё <MoreBlue width={24} height={24} onClick={() => setEditSectionName(true)} />
+                    </div>
+                    {isEditSectionNameOpen && <EditSectionName />}
+                </div>
                 <div className={styles.header_price}>120 000 ₽/мес</div>
             </div>
             <div>

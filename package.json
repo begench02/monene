@@ -13,6 +13,7 @@
     "dependencies": {
         "@reduxjs/toolkit": "^2.2.0",
         "corner-smoothing": "^0.1.5",
+        "emoji-picker-react": "^4.7.18",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-hook-form": "^7.50.1",

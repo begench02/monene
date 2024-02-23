@@ -5,6 +5,7 @@ interface CssExports {
   'content_items': string;
   'header': string;
   'header_price': string;
+  'header_title_text': string;
   'main': string;
 }
 export const cssExports: CssExports;

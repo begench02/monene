@@ -42,7 +42,24 @@ export const webpackCommon: Configuration = {
             },
             {
                 test: /\.svg$/,
-                use: [{ loader: '@svgr/webpack', options: { icon: true } }],
+                use: [
+                    {
+                        loader: '@svgr/webpack',
+                        options: {
+                            icon: true,
+                            svgrConfig: {
+                                plugins: [
+                                    {
+                                        name: 'convertColors',
+                                        params: {
+                                            currentColor: true,
+                                        },
+                                    },
+                                ],
+                            },
+                        },
+                    },
+                ],
             },
         ],
     },
