@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Group, InitialState } from './budget.types'
+import { Group, GroupItem, InitialState } from './budget.types'
 import { v4 as uuid } from 'uuid'
 
 const initialState: InitialState = {
@@ -14,19 +14,19 @@ const initialState: InitialState = {
                 {
                     name: 'Арендую квартиру',
                     cheatFrom: 'Зарплата',
-                    amount: '30 000 ₽/мес',
+                    monthlyPayment: '30 000 ₽/мес',
                     isGoal: false,
                 },
                 {
                     name: 'Продукты',
                     cheatFrom: '50 на 50',
-                    amount: '20000 ₽/мес',
+                    monthlyPayment: '20000 ₽/мес',
                     isGoal: false,
                 },
                 {
                     name: 'Интернет',
                     cheatFrom: 'Аванс',
-                    amount: '20 000 ₽/мес',
+                    monthlyPayment: '20 000 ₽/мес',
                     isGoal: false,
                 },
             ],
@@ -40,13 +40,13 @@ const initialState: InitialState = {
                 {
                     name: 'Тайланд',
                     cheatFrom: 'Зарплата',
-                    amount: '10 000 ₽/мес',
+                    monthlyPayment: '10 000 ₽/мес',
                     isGoal: false,
                 },
                 {
                     name: 'Отель кошке',
                     cheatFrom: 'Аванс',
-                    amount: '5 000 ₽/мес',
+                    monthlyPayment: '5 000 ₽/мес',
                     isGoal: false,
                 },
             ],
@@ -93,6 +93,9 @@ export const budgetSlice = createSlice({
             const item_index = state.groups[group_index].items.findIndex((item) => item.name === action.payload.name)
             state.groups[group_index].items.splice(item_index, 1)
         },
+        createGroupItem: (state, action: PayloadAction<{ groupId: string; groupItem: GroupItem }>) => {
+            state.groups.find((group) => group.id === action.payload.groupId).items.push(action.payload.groupItem)
+        },
     },
 })
 
@@ -105,6 +108,7 @@ export const {
     moveGroupItemUp,
     moveGroupItemDown,
     deleteGroupItem,
+    createGroupItem,
 } = budgetSlice.actions
 
 export default budgetSlice.reducer

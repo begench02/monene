@@ -1,15 +1,17 @@
 import { ChangeEvent, FC, Reducer, useReducer, useState } from 'react'
-import { CreateBudgetGroupGoalItem } from './create-group-goal-item/create-budget-group-goal-item'
-import { GroupItem } from 'store/budget/budget.types'
+import { CreateBudgetGroupGoalItem } from './create-budget-group-goal-item/create-budget-group-goal-item'
+import { createGroupItem } from 'store/budget/budget.reducer'
 import { Squircle } from 'corner-smoothing'
+import { useAppDispatch } from 'src/hooks'
+import { useCreateBudgetGroupItem } from './create-budget-group-item.reducer'
 import Ruble from 'assets/ruble.svg'
 import Star from 'assets/star.svg'
 import styles from './create-budget-group-item.module.sass'
-import { useCreateBudgetGroupItem } from './create-budget-group-item.reducer'
 
-export const CreateBudgetGroupItem: FC<{ close: VoidFunction }> = ({ close }) => {
+export const CreateBudgetGroupItem: FC<Props> = (props) => {
+    const { close, groupId } = props
     const { state, dispatch } = useCreateBudgetGroupItem()
-    console.log(state.isGoal)
+    const appDispatch = useAppDispatch()
 
     return (
         <div className={styles.main}>
@@ -42,6 +44,8 @@ export const CreateBudgetGroupItem: FC<{ close: VoidFunction }> = ({ close }) =>
                 </div>
                 {state.isGoal ? (
                     <CreateBudgetGroupGoalItem
+                        state={state}
+                        dispatch={dispatch}
                         close={() => {
                             dispatch({ type: 'goal' })
                         }}
@@ -55,7 +59,7 @@ export const CreateBudgetGroupItem: FC<{ close: VoidFunction }> = ({ close }) =>
                             className={styles.input}
                             id='monthlyPayment'
                             type='number'
-                            value={state.amount}
+                            value={state.monthlyPayment}
                             placeholder='0'
                             onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                 dispatch({ type: 'change-amount', payload: e.target.value })
@@ -73,10 +77,20 @@ export const CreateBudgetGroupItem: FC<{ close: VoidFunction }> = ({ close }) =>
                     <input className={styles.input} id='spendFrom' />
                 </div>
 
-                <Squircle className={styles.btn} cornerRadius={10}>
+                <Squircle
+                    className={styles.btn}
+                    onClick={() => appDispatch(() => console.log(state))}
+                    // createGroupItem({ groupId: groupId, groupItem: state }))
+                    cornerRadius={10}
+                >
                     Сохранить
                 </Squircle>
             </div>
         </div>
     )
+}
+
+type Props = {
+    close: VoidFunction
+    groupId: string
 }

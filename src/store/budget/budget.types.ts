@@ -13,7 +13,7 @@ export type Group = {
 
 export type GroupItem = {
     name: string
-    amount: string
+    monthlyPayment: string
     cheatFrom: string
 } & (
     | {
@@ -25,5 +25,6 @@ export type GroupItem = {
           deadline: string
           startDate: string
           savings: string
+          
       }
 )

@@ -1,12 +1,11 @@
 import { BudgetGroup } from './budget-group/budget-group'
-import { CreateBudgetGroupItem } from './create-budget-group-item/create-budget-group-item'
+import { CreateBudgetGroup } from './create-budget-group/create-budget-group'
 import { IncomeSection } from './income-section/income-section'
 import { Squircle } from 'corner-smoothing'
 import { useAppSelector } from 'src/hooks'
 import { useState } from 'react'
 import AddCircle from 'assets/add-circle.svg'
 import styles from './budget.module.sass'
-import { CreateBudgetGroupGoalItem } from './create-budget-group-item/create-group-goal-item/create-budget-group-goal-item'
 
 export const Budget = () => {
     const [isCreateGroupOpen, setCreateGroupOpen] = useState(false)
@@ -34,7 +33,7 @@ export const Budget = () => {
                             </Squircle>
                         </div>
                     </div>
-                    {isCreateGroupOpen && <CreateBudgetGroupItem close={() => setCreateGroupOpen(false)} />}
+                    {isCreateGroupOpen && <CreateBudgetGroup close={() => setCreateGroupOpen(false)} />}
                     {budgetState.groups.map((group) => (
                         <BudgetGroup key={group.id} group={group} />
                         

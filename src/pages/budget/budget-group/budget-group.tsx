@@ -95,12 +95,12 @@ export const BudgetGroup: FC<{ group: Group }> = (props) => {
                     <div>Откада списывать</div>
                     <div>Сумма</div>
                 </div>
-                {items.map(({ name, cheatFrom, amount }) => (
-                    <div key={`${name}-${amount}`} className={styles.content_items}>
+                {items.map(({ name, cheatFrom, monthlyPayment }) => (
+                    <div key={`${name}-${monthlyPayment}`} className={styles.content_items}>
                         <div>{name}</div>
                         <div>{cheatFrom}</div>
                         <div style={{ display: 'flex', gap: '5px', justifyContent: 'space-between' }}>
-                            <div>{amount}</div>
+                            <div>{monthlyPayment}</div>
                             <More
                                 className={styles.more}
                                 width={25}
@@ -117,7 +117,7 @@ export const BudgetGroup: FC<{ group: Group }> = (props) => {
             <div className={styles.group_item_create} onClick={() => setCreateNewGroupItem(true)}>
                 Создать <AddCircle />
             </div>
-            {createNewGroupItem && <CreateBudgetGroupItem close={() => setCreateNewGroupItem(false)} />}
+            {createNewGroupItem && <CreateBudgetGroupItem groupId={id} close={() => setCreateNewGroupItem(false)} />}
         </Squircle>
     )
 }

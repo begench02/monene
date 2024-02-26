@@ -3,15 +3,25 @@ import { GroupItem } from 'store/budget/budget.types'
 
 const initialGroupItemState: GroupItem = {
     name: '',
-    amount: '',
+    monthlyPayment: '',
     isGoal: false,
     cheatFrom: 'Зарплата',
+} || {
+    name: '',
+    monthlyPayment: '',
+    isGoal: true,
+    cheatFrom: 'Зарплата',
+    deadline: '',
+    savings: '',
+    savingsTotal: '',
+    startDate: '',
 }
 
-type BudgetGroupItemAction =
+export type BudgetGroupItemAction =
     | { type: 'change-name'; payload: string }
     | { type: 'change-amount'; payload: string }
     | { type: 'goal' }
+    | { type: 'set-monthly-payment'; payload: string }
 
 const budgetGroupItemReducer: Reducer<GroupItem, BudgetGroupItemAction> = (state, action) => {
     switch (action.type) {
@@ -35,10 +45,18 @@ const budgetGroupItemReducer: Reducer<GroupItem, BudgetGroupItemAction> = (state
             return {
                 ...state,
                 isGoal: true,
+                cheatFrom: '',
+                monthlyPayment: '',
+                name: '',
                 deadline: '',
                 savings: '',
                 savingsTotal: '',
                 startDate: '',
+            }
+        case 'set-monthly-payment':
+            return {
+                ...state,
+                monthlyPayment: action.payload,
             }
         default:
             return state

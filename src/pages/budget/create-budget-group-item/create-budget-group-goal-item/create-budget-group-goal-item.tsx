@@ -1,12 +1,15 @@
 import 'react-datepicker/dist/react-datepicker.css'
-import { ChangeEvent, FC, useState } from 'react'
+import { ChangeEvent, Dispatch, FC, useState } from 'react'
+import { GroupItem } from 'store/budget/budget.types'
+import { BudgetGroupItemAction, useCreateBudgetGroupItem } from '../create-budget-group-item.reducer'
 import DatePicker from 'react-datepicker'
 import Ruble from 'assets/ruble.svg'
 import Star from 'assets/star.svg'
 import styles from './create-budget-group-goal-item.module.sass'
 
-export const CreateBudgetGroupGoalItem: FC<{ close: VoidFunction }> = ({ close }) => {
-    const [monthlyPayment, setMonthlyPayment] = useState(0)
+export const CreateBudgetGroupGoalItem: FC<Props> = (props) => {
+    const { close, state, dispatch } = props
+    // const [savings]
 
     return (
         <div className={styles.main}>
@@ -24,7 +27,15 @@ export const CreateBudgetGroupGoalItem: FC<{ close: VoidFunction }> = ({ close }
                 <label className={styles.label} htmlFor='monthly-payment'>
                     Ежемесячный платеж
                 </label>
-                <input className={styles.input} id='monthly-payment' type='number' />
+                <input
+                    className={styles.input}
+                    value={state.monthlyPayment}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        dispatch({ type: 'set-monthly-payment', payload: e.target.value })
+                    }
+                    id='monthly-payment'
+                    type='number'
+                />
                 <div className={styles.ruble_block}>
                     <Ruble className={styles.ruble} />
                 </div>
@@ -73,7 +84,7 @@ export const CreateBudgetGroupGoalItem: FC<{ close: VoidFunction }> = ({ close }
                     className={styles.input}
                     id='monthlyPayment'
                     type='number'
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => setMonthlyPayment(+e.target.value)}
+                    // onChange={(e: ChangeEvent<HTMLInputElement>) => setMonthlyPayment(+e.target.value)}
                 />
                 <div className={styles.ruble_block}>
                     <Ruble className={styles.ruble} />
@@ -81,4 +92,10 @@ export const CreateBudgetGroupGoalItem: FC<{ close: VoidFunction }> = ({ close }
             </div>
         </div>
     )
+}
+
+type Props = {
+    close: VoidFunction
+    dispatch: Dispatch<BudgetGroupItemAction>
+    state: GroupItem
 }
