@@ -3,10 +3,10 @@ import { ChangeEvent, useState } from 'react'
 import { Squircle } from 'corner-smoothing'
 import { useAppDispatch } from 'src/hooks'
 import EmojiPicker from 'emoji-picker-react'
-import styles from './create-group.module.sass'
+import styles from './create-budget-group.module.sass'
 
 let icon = '💼'
-export const CreateGroup = ({ close }: { close: VoidFunction }) => {
+export const CreateBudgetGroup = ({ close }: { close: VoidFunction }) => {
     const dispatch = useAppDispatch()
     const [name, setName] = useState('')
     const [isEmojiMenuOpen, setEmojiMenuOpen] = useState(false)

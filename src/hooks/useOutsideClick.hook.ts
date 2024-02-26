@@ -5,7 +5,6 @@ export const useOutsideClick = (callback: VoidFunction) => {
 
     useEffect(() => {
         const handleClick = (event) => {
-            console.log(event)
             // @ts-ignore
             if (ref.current && !ref.current.contains(event.target)) {
                 callback()

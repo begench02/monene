@@ -3,6 +3,11 @@
 interface CssExports {
   'content_item': string;
   'content_item_text': string;
+  'delete_buttons': string;
+  'delete_main': string;
+  'delete_no': string;
+  'delete_title': string;
+  'delete_yes': string;
   'icon': string;
   'main': string;
 }

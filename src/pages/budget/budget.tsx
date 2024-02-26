@@ -1,11 +1,12 @@
-import { BudgetSection } from './budget-section/expenses-section'
+import { BudgetGroup } from './budget-group/budget-group'
+import { CreateBudgetGroupItem } from './create-budget-group-item/create-budget-group-item'
 import { IncomeSection } from './income-section/income-section'
 import { Squircle } from 'corner-smoothing'
 import { useAppSelector } from 'src/hooks'
 import { useState } from 'react'
 import AddCircle from 'assets/add-circle.svg'
 import styles from './budget.module.sass'
-import { CreateGroup } from './create-group/create-group'
+import { CreateBudgetGroupGoalItem } from './create-budget-group-item/create-group-goal-item/create-budget-group-goal-item'
 
 export const Budget = () => {
     const [isCreateGroupOpen, setCreateGroupOpen] = useState(false)
@@ -33,16 +34,18 @@ export const Budget = () => {
                             </Squircle>
                         </div>
                     </div>
-                    {isCreateGroupOpen && <CreateGroup close={() => setCreateGroupOpen(false)}/>}
-                    {budgetState.groups.map((group) => (
-                        <BudgetSection group={group} />
-                    ))}
+                    {isCreateGroupOpen && <CreateBudgetGroupItem close={() => setCreateGroupOpen(false)} />}
+                    {/* {budgetState.groups.map((group) => (
+                        <BudgetGroup key={group.id} group={group} />
+                    ))} */}
+                    <CreateBudgetGroupItem close={() => {}}/>
+                    
                 </div>
                 <div className={styles.income}>
                     <div className={styles.income_header}>
                         <div className={styles.income_header_title}>
                             <h3>Доходы</h3>
-                            <Squircle cornerRadius={15} className={styles.income_header_month}>
+                            <Squircle className={styles.income_header_month} cornerRadius={8}>
                                 100 000 &#8381;/мес
                             </Squircle>
                         </div>

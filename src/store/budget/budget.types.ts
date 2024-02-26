@@ -1,18 +1,29 @@
 export type InitialState = {
-    totalAmount: string
     groups: Group[]
+    totalAmount: string
 }
 
 export type Group = {
-    name: string
     icon: string
-    totalAmount: string
+    id: string
     items: GroupItem[]
+    name: string
+    totalAmount: string
 }
 
 export type GroupItem = {
     name: string
-    cheatFrom: string
     amount: string
-    isGoal?: false | undefined
-}
+    cheatFrom: string
+} & (
+    | {
+          isGoal: false
+      }
+    | {
+          isGoal: true
+          savingsTotal: string
+          deadline: string
+          startDate: string
+          savings: string
+      }
+)

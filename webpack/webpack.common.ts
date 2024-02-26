@@ -27,6 +27,10 @@ export const webpackCommon: Configuration = {
                 exclude: /(node_modules|\.webpack)/,
             },
             {
+                test: /\.css$/,
+                use: [{ loader: MiniCssExtractPlugin.loader }, { loader: 'css-loader' }],
+            },
+            {
                 test: /\.s[ac]ss$/i,
                 use: [
                     { loader: MiniCssExtractPlugin.loader },
