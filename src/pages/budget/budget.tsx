@@ -35,11 +35,10 @@ export const Budget = () => {
                         </div>
                     </div>
                     {isCreateGroupOpen && <CreateBudgetGroupItem close={() => setCreateGroupOpen(false)} />}
-                    {/* {budgetState.groups.map((group) => (
+                    {budgetState.groups.map((group) => (
                         <BudgetGroup key={group.id} group={group} />
-                    ))} */}
-                    <CreateBudgetGroupItem close={() => {}}/>
-                    
+                        
+                    ))}                    
                 </div>
                 <div className={styles.income}>
                     <div className={styles.income_header}>

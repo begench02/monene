@@ -66,11 +66,11 @@ export const budgetSlice = createSlice({
             group.name = action.payload.name
             group.icon = action.payload.icon
         },
-        moveGroupToTop: (state, action: PayloadAction<{ id: string }>) => {
+        moveGroupUp: (state, action: PayloadAction<{ id: string }>) => {
             const index = state.groups.findIndex((group) => group.id == action.payload.id)
             state.groups.unshift(state.groups.splice(index, 1)[0])
         },
-        moveGroupToBottom: (state, action: PayloadAction<{ id: string }>) => {
+        moveGroupDown: (state, action: PayloadAction<{ id: string }>) => {
             const index = state.groups.findIndex((group) => group.id === action.payload.id)
             state.groups.push(state.groups.splice(index, 1)[0])
         },
@@ -78,9 +78,33 @@ export const budgetSlice = createSlice({
             const index = state.groups.findIndex((group) => group.id === action.payload.id)
             state.groups.splice(index, 1)
         },
+        moveGroupItemUp: (state, action: PayloadAction<{ id: string; name: string }>) => {
+            const group_index = state.groups.findIndex((group) => group.id === action.payload.id)
+            const item_index = state.groups[group_index].items.findIndex((item) => item.name === action.payload.name)
+            state.groups[group_index].items.unshift(state.groups[group_index].items.splice(item_index, 1)[0])
+        },
+        moveGroupItemDown: (state, action: PayloadAction<{ id: string; name: string }>) => {
+            const group_index = state.groups.findIndex((group) => group.id === action.payload.id)
+            const item_index = state.groups[group_index].items.findIndex((item) => item.name === action.payload.name)
+            state.groups[group_index].items.push(state.groups[group_index].items.splice(item_index, 1)[0])
+        },
+        deleteGroupItem: (state, action: PayloadAction<{ groupId: string; name: string }>) => {
+            const group_index = state.groups.findIndex((group) => group.id === action.payload.groupId)
+            const item_index = state.groups[group_index].items.findIndex((item) => item.name === action.payload.name)
+            state.groups[group_index].items.splice(item_index, 1)
+        },
     },
 })
 
-export const { addGroup, editGroupItem, moveGroupToTop, moveGroupToBottom, deleteGroup } = budgetSlice.actions
+export const {
+    addGroup,
+    editGroupItem,
+    moveGroupUp,
+    moveGroupDown,
+    deleteGroup,
+    moveGroupItemUp,
+    moveGroupItemDown,
+    deleteGroupItem,
+} = budgetSlice.actions
 
 export default budgetSlice.reducer

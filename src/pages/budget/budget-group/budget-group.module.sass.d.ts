@@ -3,10 +3,10 @@
 interface CssExports {
   'cancel': string;
   'check': string;
-  'content_create': string;
   'content_header': string;
   'content_items': string;
   'edit_name_header': string;
+  'group_item_create': string;
   'header': string;
   'header_block': string;
   'header_block_title': string;
@@ -15,6 +15,7 @@ interface CssExports {
   'icon': string;
   'input': string;
   'main': string;
+  'more': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

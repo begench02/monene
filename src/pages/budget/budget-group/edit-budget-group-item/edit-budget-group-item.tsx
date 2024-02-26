@@ -1,23 +1,23 @@
-import { deleteGroup, moveGroupDown, moveGroupUp } from 'store/budget/budget.reducer'
-import { useAppDispatch } from 'src/hooks'
-import { useState } from 'react'
-import Bottom from 'assets/bottom.svg'
-import Copy from 'assets/copy.svg'
-import Delete from 'assets/delete.svg'
+import styles from './edit-budget-group-item.module.sass'
 import Edit from 'assets/edit.svg'
-import styles from './edit-budget-group-name.module.sass'
+import Copy from 'assets/copy.svg'
 import Up from 'assets/up.svg'
+import Down from 'assets/bottom.svg'
+import Delete from 'assets/delete.svg'
+import { FC, useState } from 'react'
+import { useAppDispatch } from 'src/hooks'
+import { deleteGroupItem, moveGroupItemDown, moveGroupItemUp } from 'store/budget/budget.reducer'
 
-export const EditBudgetGroupName = (props: Props) => {
+export const EditBudgetGroupItem: FC<Props> = (props) => {
     const dispatch = useAppDispatch()
-    const { openEditNameMenu, id, close } = props
-    const [isDeleteGroupShown, setDeleteGroupShown] = useState(false)
+    const { close, name, groupId } = props
+    const [isDeleteItemMenuOpen, setDeleteItemMenuOpen] = useState(false)
 
     return (
         <div className={styles.main}>
-            <div className={styles.content_item} onClick={openEditNameMenu}>
+            <div className={styles.content_item} onClick={() => {}}>
                 <Edit className={styles.icon} />
-                <div className={styles.content_item_text}>Изменить название</div>
+                <div className={styles.content_item_text}>Изменить</div>
             </div>
             <div className={styles.content_item}>
                 <Copy className={styles.icon} />
@@ -26,7 +26,7 @@ export const EditBudgetGroupName = (props: Props) => {
             <div
                 className={styles.content_item}
                 onClick={() => {
-                    dispatch(moveGroupUp({ id }))
+                    dispatch(moveGroupItemUp({ id: groupId, name }))
                     close()
                 }}
             >
@@ -36,30 +36,35 @@ export const EditBudgetGroupName = (props: Props) => {
             <div
                 className={styles.content_item}
                 onClick={() => {
-                    dispatch(moveGroupDown({ id }))
+                    dispatch(moveGroupItemDown({ id: groupId, name }))
                     close()
                 }}
             >
-                <Bottom className={styles.icon} />
+                <Down className={styles.icon} />
                 <div className={styles.content_item_text}>Вниз</div>
             </div>
             <div
                 className={styles.content_item}
                 onClick={() => {
-                    setDeleteGroupShown(true)
+                    setDeleteItemMenuOpen(true)
                 }}
             >
                 <Delete className={styles.icon} />
-                <div className={styles.content_item_text}>Удалить группу</div>
+                <div className={styles.content_item_text}>Удалить</div>
             </div>
-            {isDeleteGroupShown && (
+            {isDeleteItemMenuOpen && (
                 <div className={styles.delete_main}>
-                    <div className={styles.delete_title}>Все расходы в группе будут удалены. Вы уверены?</div>
+                    <div className={styles.delete_title}>Вы действительно хотите удалить расход?</div>
                     <div className={styles.delete_buttons}>
-                        <div className={styles.delete_yes} onClick={() => dispatch(deleteGroup({ id }))}>
+                        <div
+                            className={styles.delete_yes}
+                            onClick={() => {
+                                dispatch(deleteGroupItem({ groupId, name }))
+                            }}
+                        >
                             <p>Да</p>
                         </div>
-                        <div className={styles.delete_no} onClick={() => setDeleteGroupShown(false)}>
+                        <div className={styles.delete_no} onClick={close}>
                             <p>Нет</p>
                         </div>
                     </div>
@@ -71,6 +76,6 @@ export const EditBudgetGroupName = (props: Props) => {
 
 type Props = {
     close: VoidFunction
-    id: string
-    openEditNameMenu: VoidFunction
+    groupId: string
+    name: string
 }

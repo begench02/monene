@@ -29,7 +29,7 @@ const budgetGroupItemReducer: Reducer<GroupItem, BudgetGroupItemAction> = (state
             if (state.isGoal) {
                 return {
                     ...state,
-                    goal: false
+                    isGoal: false,
                 }
             }
             return {

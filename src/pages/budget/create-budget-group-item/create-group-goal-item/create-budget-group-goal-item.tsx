@@ -1,15 +1,12 @@
 import 'react-datepicker/dist/react-datepicker.css'
-import { ChangeEvent, FC, useReducer, useState } from 'react'
+import { ChangeEvent, FC, useState } from 'react'
 import DatePicker from 'react-datepicker'
 import Ruble from 'assets/ruble.svg'
 import Star from 'assets/star.svg'
 import styles from './create-budget-group-goal-item.module.sass'
-import { useCreateBudgetGroupItem } from '../create-budget-group-item.reducer'
 
 export const CreateBudgetGroupGoalItem: FC<{ close: VoidFunction }> = ({ close }) => {
-    const {state, dispatch} = useCreateBudgetGroupItem()
     const [monthlyPayment, setMonthlyPayment] = useState(0)
-    const [isGoal, setGoal] = useState(false)
 
     return (
         <div className={styles.main}>

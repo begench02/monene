@@ -10,12 +10,12 @@ import Up from 'assets/up.svg'
 
 export const EditBudgetGroupName = (props: Props) => {
     const dispatch = useAppDispatch()
-    const { openEditNameMenu, id, close } = props
+    const { editName, id, setEditSectionName } = props
     const [isDeleteGroupShown, setDeleteGroupShown] = useState(false)
 
     return (
         <div className={styles.main}>
-            <div className={styles.content_item} onClick={openEditNameMenu}>
+            <div className={styles.content_item} onClick={() => editName(true)}>
                 <Edit className={styles.icon} />
                 <div className={styles.content_item_text}>Изменить название</div>
             </div>
@@ -27,7 +27,7 @@ export const EditBudgetGroupName = (props: Props) => {
                 className={styles.content_item}
                 onClick={() => {
                     dispatch(moveGroupUp({ id }))
-                    close()
+                    setEditSectionName(false)
                 }}
             >
                 <Up className={styles.icon} />
@@ -37,7 +37,7 @@ export const EditBudgetGroupName = (props: Props) => {
                 className={styles.content_item}
                 onClick={() => {
                     dispatch(moveGroupDown({ id }))
-                    close()
+                    setEditSectionName(false)
                 }}
             >
                 <Bottom className={styles.icon} />
@@ -70,7 +70,7 @@ export const EditBudgetGroupName = (props: Props) => {
 }
 
 type Props = {
-    close: VoidFunction
+    editName: (bool: boolean) => void
     id: string
-    openEditNameMenu: VoidFunction
+    setEditSectionName: (bool: boolean) => void
 }

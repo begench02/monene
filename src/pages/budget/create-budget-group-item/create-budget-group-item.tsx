@@ -9,6 +9,7 @@ import { useCreateBudgetGroupItem } from './create-budget-group-item.reducer'
 
 export const CreateBudgetGroupItem: FC<{ close: VoidFunction }> = ({ close }) => {
     const { state, dispatch } = useCreateBudgetGroupItem()
+    console.log(state.isGoal)
 
     return (
         <div className={styles.main}>
@@ -40,7 +41,11 @@ export const CreateBudgetGroupItem: FC<{ close: VoidFunction }> = ({ close }) =>
                     />
                 </div>
                 {state.isGoal ? (
-                    <CreateBudgetGroupGoalItem close={() => dispatch({ type: 'goal' })} />
+                    <CreateBudgetGroupGoalItem
+                        close={() => {
+                            dispatch({ type: 'goal' })
+                        }}
+                    />
                 ) : (
                     <div className={styles.input_block}>
                         <label className={styles.label} htmlFor='monthlyPayment'>

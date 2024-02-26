@@ -2,8 +2,11 @@ import { Squircle } from 'corner-smoothing'
 import AddCircle from 'assets/add-circle.svg'
 import More from 'assets/more.svg'
 import styles from './income-section.module.sass'
+import { FC } from 'react'
 
-export const IncomeSection = ({ type = 'main' }: Props) => {
+export const IncomeSection: FC<Props> = (props) => {
+    const { type } = props
+
     return (
         <Squircle className={styles.main} cornerRadius={5}>
             <div className={styles.header}>
@@ -43,4 +46,5 @@ export const IncomeSection = ({ type = 'main' }: Props) => {
 
 type Props = {
     type: 'main' | 'additional'
+    // setEditItem: VoidFunction
 }

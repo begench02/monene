@@ -5,9 +5,6 @@ import profile from 'assets/profile.png'
 import styles from './header.module.sass'
 
 export const Header = () => {
-    const location = useLocation()
-    console.log(location.pathname)
-
     return (
         <header className={styles.main}>
             <Logo width={150} height={25} />

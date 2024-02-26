@@ -1,4 +1,6 @@
 import { ChangeEvent, FC, useState } from 'react'
+import { CreateBudgetGroupItem } from '../create-budget-group-item/create-budget-group-item'
+import { EditBudgetGroupItem } from './edit-budget-group-item/edit-budget-group-item'
 import { EditBudgetGroupName } from './edit-budget-group-name/edit-budget-group-name'
 import { editGroupItem } from 'store/budget/budget.reducer'
 import { Group } from 'store/budget/budget.types'
@@ -13,32 +15,31 @@ import MoreBlue from 'assets/more-blue.svg'
 import styles from './budget-group.module.sass'
 
 export const BudgetGroup: FC<{ group: Group }> = (props) => {
-    const dispatch = useAppDispatch()
     const { name, icon, totalAmount, items, id } = props.group
-    const editSectionNameRef = useOutsideClick(() => setEditSectionName(false))
+    const dispatch = useAppDispatch()
+
     const [isEmojiMenuOpen, setEmojiMenuOpen] = useState(false)
-    const [isEditSectionNameOpen, setEditSectionName] = useState(false)
-    const [editName, setEditName] = useState(false)
+    // Edit group name
+    const [isEditNameMenuOpen, setEditNameMenuOpen] = useState(false)
+    // Group name settings
+    const [isGroupSettingsOpen, setGroupSettingsOpen] = useState(false)
+    // Edited name and icon
     const [newName, setNewName] = useState(name)
     const [newIcon, setNewIcon] = useState(icon)
 
-    const saveEditedName = () => {
-        dispatch(editGroupItem({ name: newName, icon: newIcon, id }))
-        setEditName(false)
-    }
+    const [isGroupItemSettingsOpen, setGroupItemSettingsOpen] = useState('')
+    const [createNewGroupItem, setCreateNewGroupItem] = useState(false)
 
-    const saveChangedIcon = (data) => {
-        setNewIcon(data.emoji)
-        setEmojiMenuOpen(false)
-    }
+    const editSectionNameRef = useOutsideClick(() => setGroupSettingsOpen(false))
+    const editGroupItemNameRef = useOutsideClick(() => setGroupItemSettingsOpen(''))
 
     return (
         <Squircle className={styles.main} cornerRadius={5}>
-            {editName ? (
+            {isEditNameMenuOpen ? (
                 <>
                     <div className={styles.header_block}>
                         <div className={styles.header_block_title}>Изменить название</div>
-                        <div className={styles.cancel} onClick={() => setEditName(false)}>
+                        <div className={styles.cancel} onClick={() => setEditNameMenuOpen(false)}>
                             Отменить
                         </div>
                     </div>
@@ -52,7 +53,13 @@ export const BudgetGroup: FC<{ group: Group }> = (props) => {
                                 value={newName}
                                 onChange={(e: ChangeEvent<HTMLInputElement>) => setNewName(e.target.value)}
                             />
-                            <div className={styles.check} onClick={saveEditedName}>
+                            <div
+                                className={styles.check}
+                                onClick={() => {
+                                    dispatch(editGroupItem({ name: newName, icon: newIcon, id }))
+                                    setEditNameMenuOpen(false)
+                                }}
+                            >
                                 <Check width={20} height={20} />
                             </div>
                         </div>
@@ -62,21 +69,27 @@ export const BudgetGroup: FC<{ group: Group }> = (props) => {
                 <div className={styles.header}>
                     <div ref={editSectionNameRef}>
                         <div className={styles.header_title_text}>
-                            {icon} {name} <MoreBlue width={24} height={24} onClick={() => setEditSectionName(true)} />
+                            {icon} {name} <MoreBlue width={24} height={24} onClick={() => setGroupSettingsOpen(true)} />
                         </div>
-                        {isEditSectionNameOpen && (
+                        {isGroupSettingsOpen && (
                             <EditBudgetGroupName
                                 id={id}
-                                setEditSectionName={setEditSectionName}
-                                editName={setEditName}
+                                close={() => setGroupSettingsOpen(false)}
+                                openEditNameMenu={() => setEditNameMenuOpen(true)}
                             />
                         )}
                     </div>
                     <div className={styles.header_price}>{totalAmount}</div>
                 </div>
             )}
-            <EmojiPicker open={isEmojiMenuOpen} onEmojiClick={saveChangedIcon} />
-            <div>
+            <EmojiPicker
+                open={isEmojiMenuOpen}
+                onEmojiClick={(data) => {
+                    setNewIcon(data.emoji)
+                    setEmojiMenuOpen(false)
+                }}
+            />
+            <div ref={editGroupItemNameRef}>
                 <div className={styles.content_header}>
                     <div>Название</div>
                     <div>Откада списывать</div>
@@ -88,14 +101,23 @@ export const BudgetGroup: FC<{ group: Group }> = (props) => {
                         <div>{cheatFrom}</div>
                         <div style={{ display: 'flex', gap: '5px', justifyContent: 'space-between' }}>
                             <div>{amount}</div>
-                            <More width={25} height={25} />
+                            <More
+                                className={styles.more}
+                                width={25}
+                                height={25}
+                                onClick={() => setGroupItemSettingsOpen(name)}
+                            />
                         </div>
+                        {isGroupItemSettingsOpen === name && (
+                            <EditBudgetGroupItem groupId={id} name={name} close={() => setGroupItemSettingsOpen('')} />
+                        )}
                     </div>
                 ))}
             </div>
-            <div className={styles.content_create}>
+            <div className={styles.group_item_create} onClick={() => setCreateNewGroupItem(true)}>
                 Создать <AddCircle />
             </div>
+            {createNewGroupItem && <CreateBudgetGroupItem close={() => setCreateNewGroupItem(false)} />}
         </Squircle>
     )
 }
