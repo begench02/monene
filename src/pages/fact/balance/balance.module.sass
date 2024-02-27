@@ -1,0 +1,72 @@
+.main
+    display: grid
+    grid-template-columns: 1fr 1fr
+
+.current_budget
+    padding: 30px
+    background: linear-gradient(90deg, #1E606C 0%, #7ADCD0 100%)
+    border-radius: 24px 0px 0px 24px
+
+.current_budget_header
+    margin: 0
+    color: #FFFFFF
+    font-size: 30px
+    font-weight: 700
+    margin-bottom: 40px
+
+.current_budget_content
+    display: flex
+    justify-content: space-between
+    align-items: center
+    .balance
+        background: #FFFFFFE5
+        border-radius: 12px
+        color: #202020
+        font-size: 30px
+        font-weight: 700
+        padding: 4px 18px
+    .buttons
+        display: flex
+        gap: 15px
+        div
+            padding: 10px 18px
+            font-weight: 700
+            font-size: 14px
+            background-color: #fff
+            cursor: pointer
+        .refill
+            color: #1E5D68
+        .write_off
+            color: #A60F0F
+
+.expenses
+    background-color: #fff
+
+.expenses_header
+    display: flex
+    justify-content: space-between
+    padding: 30px
+    .title
+        font-size: 22px
+        font-weight: 700
+        color: #1E2223
+    .date
+        padding: 10px
+        color: #888888
+        font-size: 12px
+        background-color: #EEEEEE
+        border-radius: 9px
+
+.expenses_content
+    display: grid
+    grid-template-columns: auto 1fr
+    column-gap: 30px
+    // justify-content: start
+    & > div
+        // display: flex
+        // justify-items: center
+        // margin-right: 30px
+        // gap: 40px
+        // text-align: center
+        // background-color: red
+    // grid-template-columns: 1d 
