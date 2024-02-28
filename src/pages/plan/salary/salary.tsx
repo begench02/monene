@@ -67,13 +67,16 @@ const getTotalIncomePrice = () => {
 
 export const Salary = () => {
     const [earningsItemSettingsOpen, setEarningsItemSettingsOpen] = useState('')
-    const [isEarningsDeleteModalOpen, setEarningsDeleteModalOpen] = useState(false)
+    const [isEarningsDeleteModalOpen, setEarningsDeleteModalOpen] = useState('')
     const [earningsAddNewItemMenuOpen, setEarningsAddNewItemMenuOpen] = useState(false)
     const [earningsEditItemMenuOpen, setEarningsEditItemMenuOpen] = useState('')
+    const earningsSettingRef = useOutsideClick(() => setEarningsItemSettingsOpen(''))
 
     const [expensesItemSettingsOpen, setExpensesItemSettingsOpen] = useState('')
-    const [isExpensesDeleteModalOpen, setExpensesDeleteModalOpen] = useState(false)
-    const earningsSettingRef = useOutsideClick(() => setEarningsItemSettingsOpen(''))
+    const [isExpensesDeleteModalOpen, setExpensesDeleteModalOpen] = useState('')
+    const [expensesEditItemMenuOpen, setExpensesEditItemMenuOpen] = useState('')
+    const [expensesAddNewItemMenuOpen, setExpensesAddNewItemMenuOpen] = useState(false)
+
     const expensesSettingsRef = useOutsideClick(() => setExpensesItemSettingsOpen(''))
 
     return (
@@ -87,7 +90,9 @@ export const Salary = () => {
                 </div>
                 <div className={styles.header_subtitle}>
                     <p>Разница</p>
-                    <Squircle cornerRadius={10} className={styles.header_price}>{convertToRuble(30_000)}</Squircle>
+                    <Squircle cornerRadius={10} className={styles.header_price}>
+                        {convertToRuble(30_000)}
+                    </Squircle>
                 </div>
             </div>
 
@@ -121,20 +126,20 @@ export const Salary = () => {
                                         </div>
                                         <div
                                             className={clsx(styles.setting, styles.setting_delete)}
-                                            onClick={() => setEarningsDeleteModalOpen(true)}
+                                            onClick={() => setEarningsDeleteModalOpen(earning.name)}
                                         >
                                             <Delete className={styles.icon} />
                                             Удалить
                                         </div>
                                     </div>
                                 )}
-                                {isEarningsDeleteModalOpen && (
+                                {isEarningsDeleteModalOpen === earning.name && (
                                     <DeleteModal
                                         text='Вы действительно хотите
                             удалить доход?'
-                                        close={() => setEarningsDeleteModalOpen(false)}
+                                        close={() => setEarningsDeleteModalOpen('')}
                                         confirm={() => {
-                                            setEarningsDeleteModalOpen(false)
+                                            setEarningsDeleteModalOpen('    ')
                                         }}
                                     />
                                 )}
@@ -155,44 +160,58 @@ export const Salary = () => {
                 <div className={styles.section_header}>
                     <div className={styles.section_header_title}>Расходы</div>
                     <Squircle className={styles.section_header_price} cornerRadius={10}>
-                        {getTotalIncomePrice()}
+                        {convertToRuble(getTotalIncomePrice())}
                     </Squircle>
                 </div>
                 <div className={styles.section_item_block} ref={expensesSettingsRef}>
-                    {expenses.map((expense) => (
-                        <div className={styles.section_item}>
-                            <div>{expense.name}</div>
-                            <div>{convertToRuble(expense.price)}</div>
-                            <More className={styles.more} onClick={() => setExpensesItemSettingsOpen(expense.name)} />
-                            {expensesItemSettingsOpen === expense.name && (
-                                <div className={styles.settings}>
-                                    <div className={styles.setting}>
-                                        <Edit className={styles.icon} /> Изменить
+                    {expenses.map((expense) => {
+                        return expensesEditItemMenuOpen === expense.name ? (
+                            <SalaryEditItem close={() => setExpensesEditItemMenuOpen('')} item={expense} />
+                        ) : (
+                            <div className={styles.section_item}>
+                                <div>{expense.name}</div>
+                                <div>{convertToRuble(expense.price)}</div>
+                                <More
+                                    className={styles.more}
+                                    onClick={() => setExpensesItemSettingsOpen(expense.name)}
+                                />
+                                {expensesItemSettingsOpen === expense.name && (
+                                    <div className={styles.settings}>
+                                        <div
+                                            className={styles.setting}
+                                            onClick={() => setExpensesEditItemMenuOpen(expense.name)}
+                                        >
+                                            <Edit className={styles.icon} /> Изменить
+                                        </div>
+                                        <div
+                                            className={clsx(styles.setting, styles.setting_delete)}
+                                            onClick={() => setExpensesDeleteModalOpen(expense.name)}
+                                        >
+                                            <Delete className={styles.icon} />
+                                            Удалить
+                                        </div>
                                     </div>
-                                    <div
-                                        className={clsx(styles.setting, styles.setting_delete)}
-                                        onClick={() => setEarningsDeleteModalOpen(true)}
-                                    >
-                                        <Delete className={styles.icon} />
-                                        Удалить
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                    {isExpensesDeleteModalOpen && (
-                        <DeleteModal
-                            text='Вы действительно хотите
-                            удалить расход?'
-                            close={() => setExpensesDeleteModalOpen(false)}
-                            confirm={() => {
-                                setExpensesDeleteModalOpen(false)
-                            }}
-                        />
-                    )}
-                    <div className={styles.create_item}>
+                                )}
+                                {isExpensesDeleteModalOpen === expense.name && (
+                                    <DeleteModal
+                                        text='Вы действительно хотите
+                                удалить расход?'
+                                        close={() => setExpensesDeleteModalOpen('')}
+                                        confirm={() => {
+                                            setExpensesDeleteModalOpen('')
+                                        }}
+                                    />
+                                )}
+                            </div>
+                        )
+                    })}
+
+                    <div className={styles.section_add_new_element} onClick={() => setExpensesAddNewItemMenuOpen(true)}>
                         Разовый доход <Plus />
                     </div>
+                    {expensesAddNewItemMenuOpen && (
+                        <SalaryCreateItem close={() => setExpensesAddNewItemMenuOpen(false)} />
+                    )}
                 </div>
             </div>
         </div>

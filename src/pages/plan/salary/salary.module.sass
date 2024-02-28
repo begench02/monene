@@ -50,6 +50,7 @@
     background: #FFFFFF99
     border-radius: 8px
     padding: 24px
+    margin-bottom: 6px
 
 .section_header
     display: flex
@@ -76,6 +77,10 @@
 .section_item
     display: grid
     grid-template-columns: 5fr 1fr 25px
+    padding: 10px
+    border-radius: 8px
+    &:nth-child(odd)
+        background-color: #fff
     .section_item_price_block
         justify-self: end
     .more
@@ -91,6 +96,7 @@
     justify-items: start
     gap: 5px
     cursor: pointer
+    margin: 10px
 
 .settings
     position: absolute
@@ -113,14 +119,6 @@
         color: #A60F0F
     div:first-child
         border-bottom: 1px solid #00000012
-
-.create_item
-    display: flex
-    align-items: center
-    padding: 4px 0
-    font-size: 15px
-    font-weight: 500
-    color: #1E2223
 
 .icon
     width: 14px
