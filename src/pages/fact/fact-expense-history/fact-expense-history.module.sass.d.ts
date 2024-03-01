@@ -2,9 +2,14 @@
 // Please do not change this file!
 interface CssExports {
   'content': string;
+  'date': string;
+  'forWhat': string;
   'header': string;
-  'header_date': string;
-  'header_title': string;
+  'item': string;
+  'load_more': string;
+  'main': string;
+  'sum': string;
+  'title': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

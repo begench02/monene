@@ -1,0 +1,43 @@
+.main
+    background-color: #FFFFFF99
+    padding: 24px
+    border-radius: 8px 8px 24px 24px
+    margin: 6px 0
+
+.title
+    font-size: 18px
+    color: #1E2223
+    margin-bottom: 22px
+
+.content
+    & > div
+        display: grid
+        grid-template-columns: 2fr 1fr 1fr
+        justify-items: start
+
+    .header
+        font-size: 12px
+        color: #3C3C3C99
+        margin-bottom: 7px
+        .sum
+            justify-self: end
+    .item
+        padding: 12px 0
+        margin: 7px 0
+        .date
+            padding: 13px 0
+            font-size: 14px
+            color: #515151
+        .forWhat
+            display: inline-block
+            padding: 6px
+            background-color: #fff
+            font-size: 12px
+            border-radius: 4px
+        .sum
+            justify-self: end
+    .load_more
+        font-size: 14px
+        color: #1E5D68
+        cursor: pointer
+        text-decoration: underline

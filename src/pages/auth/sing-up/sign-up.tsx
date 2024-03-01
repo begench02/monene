@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { regex } from 'src/utils/regex'
+import { regex } from 'utils/index'
+import { Squircle } from 'corner-smoothing'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import clsx from 'clsx'
 import cs from '../auth.module.sass'
@@ -9,7 +10,6 @@ import styles from './sign-up.module.sass'
 import Telegram from 'assets/auth/telegram.svg'
 import Vk from 'assets/auth/vk.svg'
 import Yandex from 'assets/auth/yandex.svg'
-import { Squircle } from 'corner-smoothing'
 
 export const SignUp = () => {
     const {

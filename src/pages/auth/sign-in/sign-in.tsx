@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { regex } from 'src/utils/regex'
+import { regex } from 'utils/index'
 import { Squircle } from 'corner-smoothing'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import clsx from 'clsx'

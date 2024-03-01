@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'
-import { convertToRuble } from 'src/utils/utils'
+import { convertToRuble } from 'utils/index'
 import { DeleteModal } from 'src/components/delete-modal/delete-modal'
 import { SalaryCreateItem } from './salary-create-item/salary-create-item'
 import { SalaryEditItem } from './salary-edit-item/salary-edit-item'

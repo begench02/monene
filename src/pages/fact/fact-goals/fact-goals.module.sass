@@ -1,0 +1,183 @@
+.main
+    background-color: #fff
+    border-radius: 8px 8px 24px 24px
+    padding: 24px 24px 28px 24px
+    margin: 6px 0
+
+.header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    .title
+        display: flex
+        font-size: 22px
+        align-items: center
+        font-weight: 700
+        color: #1E2223
+        .question
+            display: grid
+            justify-content: center
+            align-items: center
+            color: #1E5D68
+            border-radius: 45px
+            background-color: #D9EFF3
+            width: 20px
+            height: 20px
+            margin-left: 5px
+            font-size: 12px
+            cursor: help
+        .hint
+            position: absolute
+            left: 58%
+            display: none
+            padding: 12px 16px
+            border-radius: 10px
+            box-shadow: 0px 2px 8px 0px #00000040
+            background-color: #fff
+            font-size: 14px
+
+    .sum
+        color: #1E5D68
+        background-color: #D9EFF3
+        font-size: 16px
+        font-weight: 700
+        padding: 10px
+        border-radius: 8px
+
+.content
+    & > div
+        display: grid
+        grid-template-columns: 1fr 1fr 1fr 1fr 20px
+        align-items: center
+        gap: 20px
+
+    .header
+        font-size: 12px
+        color: #3C3C3C99
+        margin-bottom: 7px
+        .goal, .plan, .saved
+            justify-self: end
+            font-size: 12px
+
+    .item
+        padding: 12px 0
+        margin: 7px 0
+        font-size: 12px
+        .name
+            color: #515151
+            font-size: 14px
+        .goal, .plan, .saved
+            justify-self: end
+            font-size: 12px
+        .saved
+            display: flex
+            align-items: center
+            font-size: 14px
+            gap: 5px
+        .close
+            width: 24px
+            height: 24px
+            display: grid
+            align-items: center
+            justify-content: center
+            border-radius: 6px
+            background-color: #E2F4F8
+            cursor: pointer
+            svg
+                width: 10px
+                height: 10px
+                path
+                    fill: #1E5D68
+        .close_active
+            background-color: #1E5D68
+            svg
+                path
+                    fill: #fff
+
+.archive
+    justify-self: end
+    text-align: end
+    font-size: 14px
+    color: #1E5D68
+    cursor: pointer
+    text-decoration: underline
+
+.archive_main
+    padding: 8px 12px
+    margin: 24px
+    background-color: #fff
+    border-radius: 10px
+    box-shadow: 0px 4px 14px 0px #00000040
+
+.archive_header
+    display: flex
+    justify-content: space-between
+    align-items: start
+    padding-bottom: 10px
+    border-bottom: 1px solid #00000024
+    margin-bottom: 10px
+    .title
+        font-size: 14px
+        color: #181818
+    .cancel
+        font-size: 12px
+        color: #515151
+        text-decoration: underline
+        cursor: pointer
+
+.archive_content
+    .header
+        display: grid
+        grid-template-columns: 2fr 1fr 1fr
+        gap: 20px
+        color: #3C3C3C99
+        margin-bottom: 7px
+        & > div
+            font-size: 12px
+        .goal, .saving
+            justify-self: end
+    .items
+        margin: 2px
+        .item
+            display: grid
+            grid-template-columns: 2fr 1fr 1fr
+            gap: 20px
+            padding: 8px 4px
+        .name
+            font-size: 14px
+            color: #515151
+        .goal, .saving
+            justify-self: end
+            font-size: 12px
+            color: #3C3C3C
+
+.delete_modal
+    position: absolute
+    left: 65%
+    width: 245px
+    height: 170px
+    padding: 24px 17px
+    font-size: 14px
+    color: #3C3C3C
+    text-align: center
+    background-color: #fff
+    box-shadow: 0px 4px 8px 0px #00000040
+    border-radius: 12px
+    .buttons
+        margin: 0 auto
+        margin-top: 20px
+        display: flex
+        justify-content: space-between
+        align-items: center
+        width: 140px
+        .yes
+            color: #1E5D68
+            border-right: 1px solid #00000033
+            width: 100%
+        .no
+            color: #515151
+            width: 100%
+        p
+            display: inline-block
+            cursor: pointer
+            margin: 0
