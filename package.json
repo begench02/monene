@@ -11,10 +11,12 @@
         "lint": "eslint --ext .js,.jsx,.ts,.tsx src/"
     },
     "dependencies": {
+        "@react-spring/web": "^9.7.3",
         "@reduxjs/toolkit": "^2.2.0",
         "corner-smoothing": "^0.1.5",
         "emoji-picker-react": "^4.7.18",
         "react": "^18.2.0",
+        "react-circular-progressbar": "^2.1.0",
         "react-datepicker": "^6.1.0",
         "react-dom": "^18.2.0",
         "react-hook-form": "^7.50.1",

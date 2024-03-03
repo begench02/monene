@@ -1,0 +1,105 @@
+.main
+    position: absolute
+    top: 0
+    right: 0
+    display: grid
+    grid-template-columns: 1fr 3fr 0.5fr
+    align-items: start
+    gap: 16px
+    padding: 0.8125rem
+    background-color: #fff
+    border-radius: 24px
+    z-index: 1
+    // .content
+    //     display: grid
+    //     grid-template-columns: 1fr 3fr 0.5fr
+    //     align-items: start
+    //     gap: 16px
+
+.progress_bar_block
+    width: 74px
+    height: 74px
+    padding: 13px
+    background-color: #E2F4F8
+    border-radius: 14px
+    .progress_bar
+        svg
+            path
+                stroke: red
+
+.progress_bar_title
+    font-size: 22px
+    color: #1E5D68
+.progress_bar_subtitle
+    font-size: 9px
+    font-weight: 400
+    color: #434343
+
+.title
+    font-size: 18px
+    color: #1E2223
+
+.subtitle
+    font-size: 12px
+    color: #515151
+
+.expand_block
+    justify-self: end
+    align-self: start
+    display: grid
+    align-items: center
+    justify-content: center
+    width: 27px
+    height: 27px
+    border-radius: 50%
+    background-color: #E2F4F8
+    cursor: pointer
+    .expand
+        width: 9px
+        height: 9px
+        color: #1E5D68
+
+.open_main
+    position: absolute
+    right: 0
+    top: 0
+    padding: 13px
+    z-index: 1
+    background-color: #fff
+
+.open_header
+    width: 100%
+    display: grid
+    grid-template-columns: 1fr 1fr 0.3fr
+    align-items: center
+    gap: 30px
+    background-color: #E2F4F8
+    border-radius: 8px
+    padding: 11px
+    .analytics
+        align-self: center
+        & > div
+            font-size: 12px
+            font-weight: 400
+            margin-bottom: 10px
+    .expand_block
+        align-self: start
+        justify-self: end
+        cursor: pointer
+        .arrow
+            width: 9px
+            height: 9px
+            transform: rotate(180deg)
+
+.open_content
+    padding: 10px
+    background-color: #fff
+    .item
+        display: flex
+        justify-content: space-between
+        align-items: center
+        margin-bottom: 10px
+        div
+            font-weight: 700
+            font-size: 14px
+            color: #515151

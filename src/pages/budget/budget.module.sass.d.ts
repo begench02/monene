@@ -3,6 +3,7 @@
 interface CssExports {
   'add_circle': string;
   'content': string;
+  'header': string;
   'income': string;
   'income_content': string;
   'income_content_header': string;

@@ -6,6 +6,7 @@ import { useAppSelector } from 'src/hooks'
 import { useState } from 'react'
 import AddCircle from 'assets/add-circle.svg'
 import styles from './budget.module.sass'
+import { BudgetFinancialHealth } from './budget-financial-health/budget-financial-health'
 
 export const Budget = () => {
     const [isCreateGroupOpen, setCreateGroupOpen] = useState(false)
@@ -13,8 +14,10 @@ export const Budget = () => {
 
     return (
         <div className={styles.main}>
-            <h2 className={styles.title}>Бюджет</h2>
-
+            <div className={styles.header}>
+                <h2 className={styles.title}>Бюджет</h2>
+                <BudgetFinancialHealth />
+            </div>
             <div className={styles.content}>
                 <div className={styles.income}>
                     <div className={styles.income_header}>
@@ -36,8 +39,7 @@ export const Budget = () => {
                     {isCreateGroupOpen && <CreateBudgetGroup close={() => setCreateGroupOpen(false)} />}
                     {budgetState.groups.map((group) => (
                         <BudgetGroup key={group.id} group={group} />
-                        
-                    ))}                    
+                    ))}
                 </div>
                 <div className={styles.income}>
                     <div className={styles.income_header}>
