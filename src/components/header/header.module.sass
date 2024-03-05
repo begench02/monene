@@ -1,18 +1,24 @@
 .main
     display: grid
-    grid-template-columns: 1fr 5fr 1.5fr
-    justify-items: center
+    grid-template-columns: repeat(3, 1fr)
     align-items: center
     height: 40px
 
 .menu
+    justify-self: center
     display: flex
     justify-content: space-between
-    gap: 1em
+    justify-items: center
+    gap: 55px
+    transition: 0.3s
     .menu_item
         font-weight: 700
         font-size: 14px
         color: #000
+        transition: 0.3s
+    &:hover a:not(:hover)
+        opacity: 0.25
+
     .menu_item__active
         &::after
             content: ""
@@ -22,7 +28,9 @@
             background-color: #1E5D68
 
 .profile
+    justify-self: flex-end
     display: flex
+    align-items: center
     justify-self: end
     gap: 1em
     img
@@ -35,3 +43,6 @@
         font-size: 14px
         font-weight: 500
         margin: 0
+    .drop_down
+        width: 8px
+        height: 4px

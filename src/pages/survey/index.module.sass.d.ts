@@ -4,6 +4,7 @@ interface CssExports {
   'answer': string;
   'answer__active': string;
   'answers': string;
+  'back_arrow': string;
   'button_back': string;
   'button_next': string;
   'button_next__disabled': string;

@@ -11,14 +11,14 @@ export const BudgetFinancialHealth = () => {
 	const [expandStyles, expandApi] = useSpring(() => ({
 		from: {
 			height: '100px',
-			width: '300px',
+			width: '357px',
 		},
 	}))
 
 	const [shrinkStyles, shrinkApi] = useSpring(() => ({
 		from: {
 			height: '300px',
-			width: '300px',
+			width: '357px',
 		},
 	}))
 
@@ -70,16 +70,16 @@ export const BudgetFinancialHealth = () => {
 								shrinkApi.start({
 									from: {
 										height: '300px',
-										width: '300px',
+										width: '357px',
 									},
 									to: {
 										height: '100px',
-										width: '300px',
+										width: '357px',
 									},
 									onResolve: () => {
 										shrinkApi.set({
 											height: '300px',
-											width: '300px',
+											width: '357px',
 										})
 										hideApi.set({
 											display: 'block',
@@ -119,13 +119,15 @@ export const BudgetFinancialHealth = () => {
 
 	return (
 		<animated.div className={styles.main} style={expandStyles}>
-			{/* <animated.div style={expandHideStyles}> */}
 			<div className={styles.progress_bar_block}>
 				<CircularProgressbar
 					className={styles.progress_bar}
 					styles={{
 						path: {
 							stroke: '#1F6672',
+						},
+						text: {
+							fill: '#1F6672',
 						},
 					}}
 					value={70}
@@ -142,16 +144,16 @@ export const BudgetFinancialHealth = () => {
 					expandApi.start({
 						from: {
 							height: '100px',
-							width: '300px',
+							width: '357px',
 						},
 						to: {
 							height: '300px',
-							width: '300px',
+							width: '357px',
 						},
 						onResolve: () => {
 							expandApi.set({
 								height: '100px',
-								width: '300px',
+								width: '357px',
 							})
 						},
 						onRest: () => {

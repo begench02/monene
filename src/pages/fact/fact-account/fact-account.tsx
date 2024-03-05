@@ -7,7 +7,7 @@ import Ruble from 'assets/ruble.svg'
 import styles from './fact-account.module.sass'
 import { FactAccountSetting } from './fact-account-setting/fact-account-setting'
 import { useOutsideClick } from 'src/hooks/useOutsideClick.hook'
-import { useAppDispatch, useAppSelector } from 'src/hooks'
+import { useAppDispatch, useAppSelector } from 'hooks/redux.hook'
 import { addAccountItem, deleteAccountItem, moveAccountItemDown, moveAccountItemUp } from 'store/fact/fact.reducer'
 
 export const FactAccount = () => {
