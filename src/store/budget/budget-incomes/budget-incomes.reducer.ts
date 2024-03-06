@@ -55,58 +55,72 @@ export const budgetSlice = createSlice({
 	name: 'budget-incomes',
 	initialState,
 	reducers: {
-		budgetIncomeGroupCreate: (state, action: PayloadAction<Omit<BudgetIncomesGroup, 'id'>>) => {
+		budgetIncomesGroupCreate: (state, action: PayloadAction<Omit<BudgetIncomesGroup, 'id'>>) => {
 			state.groups.push({ ...action.payload, id: uuid() })
 		},
-		budgetIncomeGroupMoveUp: (state, action: PayloadAction<{ id: string }>) => {
+		budgetIncomesGroupDuplicate: (state, action: PayloadAction<{ id: string }>) => {
+			const group = state.groups.find((group) => group.id === action.payload.id)
+			state.groups.push({ ...group, id: uuid() })
+		},
+		budgetIncomesGroupMoveUp: (state, action: PayloadAction<{ id: string }>) => {
 			const index = state.groups.findIndex((group) => group.id == action.payload.id)
 			state.groups.unshift(state.groups.splice(index, 1)[0])
 		},
-		budgetIncomeGroupMoveDown: (state, action: PayloadAction<{ id: string }>) => {
+		budgetIncomesGroupMoveDown: (state, action: PayloadAction<{ id: string }>) => {
 			const index = state.groups.findIndex((group) => group.id === action.payload.id)
 			state.groups.push(state.groups.splice(index, 1)[0])
 		},
-		budgetIncomeGroupDelete: (state, action: PayloadAction<{ id: string }>) => {
+		budgetIncomesGroupDelete: (state, action: PayloadAction<{ id: string }>) => {
 			const index = state.groups.findIndex((group) => group.id === action.payload.id)
 			state.groups.splice(index, 1)
 		},
-		budgetIncomeGroupItemCreate: (state, action: PayloadAction<{ group_id: string; item: BudgetIncomesGroupItem }>) => {
-			const index = state.groups.findIndex((group) => group.id === action.payload.group_id)
+		budgetIncomesGroupItemCreate: (
+			state,
+			action: PayloadAction<{ groupId: string; item: BudgetIncomesGroupItem }>,
+		) => {
+			const index = state.groups.findIndex((group) => group.id === action.payload.groupId)
 			const new_item = Object.assign(action.payload.item, { id: uuid() })
 			state.groups[index].items.push(new_item)
 		},
-		budgetIncomeGroupItemEdit: (state, action: PayloadAction<BudgetIncomesGroupItem>) => {
+		budgetIncomesGroupItemEdit: (state, action: PayloadAction<BudgetIncomesGroupItem>) => {
 			const index = state.groups.findIndex((group) => group.id == action.payload.id)
 			Object.assign(state.groups[index], action.payload)
 		},
-		budgetIncomeGroupItemMoveUp: (state, action: PayloadAction<{ id: string; name: string }>) => {
-			const group_index = state.groups.findIndex((group) => group.id === action.payload.id)
-			const item_index = state.groups[group_index].items.findIndex((item) => item.name === action.payload.name)
+		budgetIncomesGroupItemDuplicate: (state, action: PayloadAction<{ groupId: string; itemId: string }>) => {
+			const group = state.groups.find((group) => group.id === action.payload.groupId)
+			const item = group.items.find((item) => item.id === action.payload.itemId)
+			group.items.push({ ...item, id: uuid() })
+		},
+		budgetIncomesGroupItemMoveUp: (state, action: PayloadAction<{ groupId: string; itemId: string }>) => {
+			const group_index = state.groups.findIndex((group) => group.id === action.payload.groupId)
+			const item_index = state.groups[group_index].items.findIndex((item) => item.id === action.payload.itemId)
 			state.groups[group_index].items.unshift(state.groups[group_index].items.splice(item_index, 1)[0])
 		},
-		budgetIncomeGroupItemMoveDown: (state, action: PayloadAction<{ id: string; name: string }>) => {
-			const group_index = state.groups.findIndex((group) => group.id === action.payload.id)
-			const item_index = state.groups[group_index].items.findIndex((item) => item.name === action.payload.name)
+		budgetIncomesGroupItemMoveDown: (state, action: PayloadAction<{ groupId: string; itemId: string }>) => {
+			const group_index = state.groups.findIndex((group) => group.id === action.payload.groupId)
+			const item_index = state.groups[group_index].items.findIndex((item) => item.id === action.payload.itemId)
 			state.groups[group_index].items.push(state.groups[group_index].items.splice(item_index, 1)[0])
 		},
-		budgetIncomeGroupItemDelete: (state, action: PayloadAction<{ groupId: string; name: string }>) => {
+		budgetIncomesGroupItemDelete: (state, action: PayloadAction<{ groupId: string; itemId: string }>) => {
 			const group_index = state.groups.findIndex((group) => group.id === action.payload.groupId)
-			const item_index = state.groups[group_index].items.findIndex((item) => item.name === action.payload.name)
+			const item_index = state.groups[group_index].items.findIndex((item) => item.id === action.payload.itemId)
 			state.groups[group_index].items.splice(item_index, 1)
 		},
 	},
 })
 
 export const {
-	budgetIncomeGroupCreate,
-	budgetIncomeGroupMoveUp,
-	budgetIncomeGroupMoveDown,
-	budgetIncomeGroupDelete,
-	budgetIncomeGroupItemCreate,
-	budgetIncomeGroupItemEdit,
-	budgetIncomeGroupItemMoveUp,
-	budgetIncomeGroupItemMoveDown,
-	budgetIncomeGroupItemDelete,
+	budgetIncomesGroupCreate,
+	budgetIncomesGroupDuplicate,
+	budgetIncomesGroupMoveUp,
+	budgetIncomesGroupMoveDown,
+	budgetIncomesGroupDelete,
+	budgetIncomesGroupItemCreate,
+	budgetIncomesGroupItemEdit,
+	budgetIncomesGroupItemDuplicate,
+	budgetIncomesGroupItemMoveUp,
+	budgetIncomesGroupItemMoveDown,
+	budgetIncomesGroupItemDelete,
 } = budgetSlice.actions
 
 export default budgetSlice.reducer

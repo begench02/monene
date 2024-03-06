@@ -1,19 +1,22 @@
 import {
 	budgetExpensesGroupItemDelete,
-	budgetExpensesGroupItemDuplicate,
 	budgetExpensesGroupItemMoveDown,
-	budgetExpensesGroupItemMoveUp,
 } from 'store/budget/budget-expenses/budget-expenses.reducer'
-import { FC, useState } from 'react'
+import {
+	budgetIncomesGroupItemDuplicate,
+	budgetIncomesGroupItemMoveDown,
+	budgetIncomesGroupItemMoveUp,
+} from 'store/budget/budget-incomes/budget-incomes.reducer'
 import { useAppDispatch } from 'hooks/redux.hook'
+import { FC, useState } from 'react'
 import Copy from 'assets/copy.svg'
 import Delete from 'assets/delete.svg'
 import Down from 'assets/bottom.svg'
 import Edit from 'assets/edit.svg'
-import styles from './budget-expenses-group-item-settings.module.sass'
+import styles from './budget-incomes-group-item-settings.module.sass'
 import Up from 'assets/up.svg'
 
-export const BudgetExpensesGroupItemSettings: FC<Props> = (props) => {
+export const BudgetIncomesGroupItemSettings: FC<Props> = (props) => {
 	const { close, name, groupId, itemId, edit } = props
 	const dispatch = useAppDispatch()
 	const [isDeleteItemMenuOpen, setDeleteItemMenuOpen] = useState(false)
@@ -27,7 +30,7 @@ export const BudgetExpensesGroupItemSettings: FC<Props> = (props) => {
 			<div
 				className={styles.content_item}
 				onClick={() => {
-					dispatch(budgetExpensesGroupItemDuplicate({ groupId, itemId }))
+					dispatch(budgetIncomesGroupItemDuplicate({ groupId, itemId }))
 					close()
 				}}
 			>
@@ -37,7 +40,7 @@ export const BudgetExpensesGroupItemSettings: FC<Props> = (props) => {
 			<div
 				className={styles.content_item}
 				onClick={() => {
-					dispatch(budgetExpensesGroupItemMoveUp({ groupId, itemId }))
+					dispatch(budgetIncomesGroupItemMoveUp({ groupId, itemId }))
 					close()
 				}}
 			>
@@ -47,7 +50,7 @@ export const BudgetExpensesGroupItemSettings: FC<Props> = (props) => {
 			<div
 				className={styles.content_item}
 				onClick={() => {
-					dispatch(budgetExpensesGroupItemMoveDown({ groupId, itemId }))
+					dispatch(budgetIncomesGroupItemMoveDown({ groupId, itemId }))
 					close()
 				}}
 			>
@@ -88,8 +91,8 @@ export const BudgetExpensesGroupItemSettings: FC<Props> = (props) => {
 
 type Props = {
 	close: VoidFunction
+	edit: VoidFunction
 	groupId: string
 	itemId: string
 	name: string
-	edit: VoidFunction
 }

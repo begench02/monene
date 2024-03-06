@@ -77,9 +77,3 @@ type Props = {
 	groupId: string
 	close: VoidFunction
 }
-
-export type BudgetExpensesGroupItemAction =
-	| { type: 'change-name'; payload: string }
-	| { type: 'change-amount'; payload: string }
-	| { type: 'goal' }
-	| { type: 'set-monthly-payment'; payload: string }

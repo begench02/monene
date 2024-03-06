@@ -109,20 +109,19 @@ export const budgetSlice = createSlice({
 			const item = group.items.find((item) => item.id === action.payload.itemId)
 			group.items.push({ ...item, id: uuid() })
 		},
-		budgetExpensesGroupItemMoveUp: (state, action: PayloadAction<{ id: string; name: string }>) => {
-			const group_index = state.groups.findIndex((group) => group.id === action.payload.id)
-			console.log(group_index)
-			const item_index = state.groups[group_index].items.findIndex((item) => item.name === action.payload.name)
+		budgetExpensesGroupItemMoveUp: (state, action: PayloadAction<{ groupId: string; itemId: string }>) => {
+			const group_index = state.groups.findIndex((group) => group.id === action.payload.groupId)
+			const item_index = state.groups[group_index].items.findIndex((item) => item.id === action.payload.itemId)
 			state.groups[group_index].items.unshift(state.groups[group_index].items.splice(item_index, 1)[0])
 		},
-		budgetExpensesGroupItemMoveDown: (state, action: PayloadAction<{ id: string; name: string }>) => {
-			const group_index = state.groups.findIndex((group) => group.id === action.payload.id)
-			const item_index = state.groups[group_index].items.findIndex((item) => item.name === action.payload.name)
+		budgetExpensesGroupItemMoveDown: (state, action: PayloadAction<{ groupId: string; itemId: string }>) => {
+			const group_index = state.groups.findIndex((group) => group.id === action.payload.groupId)
+			const item_index = state.groups[group_index].items.findIndex((item) => item.id === action.payload.itemId)
 			state.groups[group_index].items.push(state.groups[group_index].items.splice(item_index, 1)[0])
 		},
-		budgetExpensesGroupItemDelete: (state, action: PayloadAction<{ groupId: string; name: string }>) => {
+		budgetExpensesGroupItemDelete: (state, action: PayloadAction<{ groupId: string; itemId: string }>) => {
 			const group_index = state.groups.findIndex((group) => group.id === action.payload.groupId)
-			const item_index = state.groups[group_index].items.findIndex((item) => item.name === action.payload.name)
+			const item_index = state.groups[group_index].items.findIndex((item) => item.id === action.payload.itemId)
 			state.groups[group_index].items.splice(item_index, 1)
 		},
 	},

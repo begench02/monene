@@ -96,7 +96,12 @@ export const BudgetExpensesGroup: FC<Props> = (props) => {
 					item.id === isGroupItemEditOpen ? (
 						<BudgetExpensesGroupItemEdit groupId={id} item={item} close={() => setGroupItemEditOpen('')} />
 					) : (
-						<BudgetExpensesGroupItem edit={() => setGroupItemEditOpen(item.id)} key={item.id} groupId={id} item={item} />
+						<BudgetExpensesGroupItem
+							edit={() => setGroupItemEditOpen(item.id)}
+							key={item.id}
+							groupId={id}
+							item={item}
+						/>
 					),
 				)}
 			</div>

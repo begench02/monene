@@ -8,7 +8,7 @@ import { useOutsideClick } from 'hooks/useOutsideClick.hook'
 
 export const BudgetExpensesGroupItem: FC<Props> = (props) => {
 	const { item, groupId, edit } = props
-	const { name, cheatFrom, price } = item
+	const { name, cheatFrom, price, id } = item
 	const [isGroupItemSettingsOpen, setGroupItemSettingsOpen] = useState('')
 	const groupItemSettingsRef = useOutsideClick(() => setGroupItemSettingsOpen(''))
 
@@ -18,9 +18,9 @@ export const BudgetExpensesGroupItem: FC<Props> = (props) => {
 			<div>{cheatFrom}</div>
 			<div style={{ display: 'flex', gap: '5px', justifyContent: 'space-between' }}>
 				<div>{convertToRuble(price, 'month')}</div>
-				<More className={styles.more} onClick={() => setGroupItemSettingsOpen(name)} />
+				<More className={styles.more} onClick={() => setGroupItemSettingsOpen(id)} />
 			</div>
-			{isGroupItemSettingsOpen === item.name && (
+			{isGroupItemSettingsOpen === item.id && (
 				<BudgetExpensesGroupItemSettings
 					edit={edit}
 					groupId={groupId}

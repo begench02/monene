@@ -1,11 +1,10 @@
 import { BudgetExpensesGroupItem } from 'store/budget/budget-expenses/budget-expenses.type'
-import { BudgetExpensesGroupItemAction } from '../budget-expenses-group-item-edit'
 import { ChangeEvent, Dispatch, FC } from 'react'
+import { UseFormRegister } from 'react-hook-form'
 import DatePicker from 'react-datepicker'
 import Ruble from 'assets/ruble.svg'
 import Star from 'assets/star.svg'
 import styles from './budget-expenses-group-item-edit-goal.module.sass'
-import { UseFormRegister } from 'react-hook-form'
 
 export const BudgetExpensesGroupItemEditGoal: FC<Props> = (props) => {
 	const { register } = props
