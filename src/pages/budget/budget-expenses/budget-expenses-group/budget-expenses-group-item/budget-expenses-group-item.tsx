@@ -1,6 +1,6 @@
 import { BudgetExpensesGroupItem as BudgetExpensesGroupItemType } from 'store/budget/budget-expenses/budget-expenses.type'
 import { BudgetExpensesGroupItemSettings } from './budget-expenses-group-item-settings/budget-expenses-group-item-settings'
-import { FC, useState } from 'react'
+import { FC, useRef, useState } from 'react'
 import More from 'assets/more.svg'
 import styles from './budget-expenses-group-item.module.sass'
 import { convertToRuble } from 'utils/index'
@@ -10,7 +10,8 @@ export const BudgetExpensesGroupItem: FC<Props> = (props) => {
 	const { item, groupId, edit } = props
 	const { name, cheatFrom, price, id } = item
 	const [isGroupItemSettingsOpen, setGroupItemSettingsOpen] = useState('')
-	const groupItemSettingsRef = useOutsideClick(() => setGroupItemSettingsOpen(''))
+	const groupItemSettingsRef = useRef(null)
+	useOutsideClick(groupItemSettingsRef, () => setGroupItemSettingsOpen(''))
 
 	return (
 		<div className={styles.items} ref={groupItemSettingsRef}>

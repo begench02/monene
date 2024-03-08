@@ -1,21 +1,18 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
-export const useOutsideClick = (callback: VoidFunction) => {
-    const ref = useRef()
+export const useOutsideClick = (elRef, callback: VoidFunction, attached = true) => {
+	useEffect(() => {
+		if (!attached) return
+		const handleClick = (event) => {
+			if (!elRef.current) return
+			if (!elRef.current.contains(event.target)) {
+				callback()
+			}
+		}
+		document.addEventListener('click', handleClick)
 
-    useEffect(() => {
-        const handleClick = (event) => {
-            // @ts-ignore
-            if (ref.current && !ref.current.contains(event.target)) {
-                callback()
-            }
-        }
-        document.addEventListener('click', handleClick)
-
-        return () => {
-            document.removeEventListener('click', handleClick)
-        }
-    }, [ref])
-
-    return ref
+		return () => {
+			document.removeEventListener('click', handleClick)
+		}
+	}, [elRef, callback, attached])
 }

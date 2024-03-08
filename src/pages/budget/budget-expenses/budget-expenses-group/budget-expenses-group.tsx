@@ -3,7 +3,7 @@ import { BudgetExpensesGroupEdit } from './budget-expenses-group-edit/budget-exp
 import { BudgetExpensesGroupItem } from './budget-expenses-group-item/budget-expenses-group-item'
 import { BudgetExpensesGroupItemCreate } from './budget-expenses-group-item/budget-expenses-group-item-create/budget-expenses-group-item-create'
 import { budgetExpensesGroupEdit } from 'store/budget/budget-expenses/budget-expenses.reducer'
-import { ChangeEvent, FC, useState } from 'react'
+import { ChangeEvent, FC, useRef, useState } from 'react'
 import { useAppDispatch } from 'hooks/redux.hook'
 import { useOutsideClick } from 'src/hooks/useOutsideClick.hook'
 import AddCircle from 'assets/add-circle.svg'
@@ -12,7 +12,6 @@ import EmojiPicker from 'emoji-picker-react'
 import MoreBlue from 'assets/more-blue.svg'
 import styles from './budget-expenes-group.module.sass'
 import { convertToRuble } from 'utils/index'
-import { BudgetExpensesGroupItemSettings } from './budget-expenses-group-item/budget-expenses-group-item-settings/budget-expenses-group-item-settings'
 import { BudgetExpensesGroupItemEdit } from './budget-expenses-group-item/budget-expenses-group-item-edit/budget-expenses-group-item-edit'
 
 export const BudgetExpensesGroup: FC<Props> = (props) => {
@@ -28,7 +27,8 @@ export const BudgetExpensesGroup: FC<Props> = (props) => {
 
 	const [createNewGroupItem, setCreateNewGroupItem] = useState(false)
 	const [isGroupItemEditOpen, setGroupItemEditOpen] = useState('')
-	const editSectionNameRef = useOutsideClick(() => setGroupSettingsOpen(false))
+	const editSectionNameRef = useRef(null)
+	useOutsideClick(editSectionNameRef, () => setGroupSettingsOpen(false))
 
 	return (
 		<div className={styles.main}>
@@ -105,11 +105,13 @@ export const BudgetExpensesGroup: FC<Props> = (props) => {
 					),
 				)}
 			</div>
-			<div className={styles.group_item_create} onClick={() => setCreateNewGroupItem(true)}>
-				Создать <AddCircle />
-			</div>
-			{createNewGroupItem && (
+
+			{createNewGroupItem ? (
 				<BudgetExpensesGroupItemCreate groupId={id} close={() => setCreateNewGroupItem(false)} />
+			) : (
+				<div className={styles.group_item_create} onClick={() => setCreateNewGroupItem(true)}>
+					Создать <AddCircle />
+				</div>
 			)}
 		</div>
 	)

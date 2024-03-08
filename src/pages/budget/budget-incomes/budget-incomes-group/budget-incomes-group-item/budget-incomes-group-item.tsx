@@ -1,7 +1,7 @@
 import { BudgetIncomesGroupItem as BudgetIncomesGroupItemType } from 'store/budget/budget-incomes/budget-incomes.type'
 import { BudgetIncomesGroupItemSettings } from './budget-incomes-group-item-settings/budget-incomes-group-item-settings'
 import { convertToRuble } from 'utils/index'
-import { FC, useState } from 'react'
+import { FC, useRef, useState } from 'react'
 import { Squircle } from 'corner-smoothing'
 import { useOutsideClick } from 'hooks/useOutsideClick.hook'
 import More from 'assets/more.svg'
@@ -11,8 +11,8 @@ export const BudgetIncomesGroupItem: FC<Props> = (props) => {
 	const { item, groupId, edit } = props
 	const { name, date, price, id } = item
 	const [isGroupItemSettingsOpen, setGroupItemSettingsOpen] = useState('')
-	const groupItemSettingsRef = useOutsideClick(() => setGroupItemSettingsOpen(''))
-	console.log(isGroupItemSettingsOpen)
+	const groupItemSettingsRef = useRef(null)
+	useOutsideClick(groupItemSettingsRef, () => setGroupItemSettingsOpen(''))
 
 	return (
 		<div className={styles.items} ref={groupItemSettingsRef}>

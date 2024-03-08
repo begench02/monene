@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useRef, useState } from 'react'
 import { convertToRuble } from 'utils/index'
 import { Squircle } from 'corner-smoothing'
 import Add from 'assets/add-circle.svg'
@@ -19,7 +19,8 @@ export const FactAccount = () => {
 	const [isCreateAccountOpen, setCreateAccountOpen] = useState(false)
 	const [hintStyle, setHintStyle] = useState({ display: 'none' })
 	const [settings, setSettings] = useState('')
-	const settingsRef = useOutsideClick(() => setSettings(''))
+	const settingsRef = useRef(null)
+	useOutsideClick(settingsRef, () => setSettings(''))
 
 	const createAccount = () => {
 		dispatch(addAccountItem({ name, sum }))

@@ -1,14 +1,14 @@
 import 'react-datepicker/dist/react-datepicker.css'
-import { BudgetExpensesGroupItem } from 'store/budget/budget-expenses/budget-expenses.type'
-import { BudgetGroupItemAction } from '../budget-expenses-group-item-create.reducer'
-import { ChangeEvent, Dispatch, FC } from 'react'
+import { FC } from 'react'
+import { useFormContext } from 'react-hook-form'
 import DatePicker from 'react-datepicker'
 import Ruble from 'assets/ruble.svg'
 import Star from 'assets/star.svg'
 import styles from './budget-group-item-create-goal.module.sass'
 
 export const BudgetExpensesGroupItemCreateGoal: FC<Props> = (props) => {
-	const { close, state, dispatch } = props
+	const { close } = props
+	const { register } = useFormContext()
 
 	return (
 		<div className={styles.main}>
@@ -26,15 +26,7 @@ export const BudgetExpensesGroupItemCreateGoal: FC<Props> = (props) => {
 				<label className={styles.label} htmlFor='monthly-payment'>
 					Ежемесячный платеж
 				</label>
-				<input
-					className={styles.input}
-					value={state.price}
-					onChange={(e: ChangeEvent<HTMLInputElement>) =>
-						dispatch({ type: 'set-monthly-payment', payload: e.target.value })
-					}
-					id='monthly-payment'
-					type='number'
-				/>
+				<input className={styles.input} id='monthly-payment' type='number' {...register('price')} />
 				<div className={styles.ruble_block}>
 					<Ruble className={styles.ruble} />
 				</div>
@@ -44,7 +36,7 @@ export const BudgetExpensesGroupItemCreateGoal: FC<Props> = (props) => {
 				<label className={styles.label} htmlFor='savings-total'>
 					Сколько накопить
 				</label>
-				<input className={styles.input} id='savings-total' type='number' />
+				<input className={styles.input} id='savings-total' type='number' {...register('savingsTotal')} />
 				<div className={styles.ruble_block}>
 					<Ruble className={styles.ruble} />
 				</div>
@@ -69,7 +61,7 @@ export const BudgetExpensesGroupItemCreateGoal: FC<Props> = (props) => {
 				<label className={styles.label} htmlFor='savings'>
 					Накопленная сумма
 				</label>
-				<input className={styles.input} id='savings' type='number' />
+				<input className={styles.input} id='savings' type='number' {...register('savings')}/>
 				<div className={styles.ruble_block}>
 					<Ruble className={styles.ruble} />
 				</div>
@@ -78,12 +70,7 @@ export const BudgetExpensesGroupItemCreateGoal: FC<Props> = (props) => {
 				<label className={styles.label} htmlFor='monthlyPayment'>
 					Ежемесячный платеж
 				</label>
-				<input
-					className={styles.input}
-					id='monthlyPayment'
-					type='number'
-					// onChange={(e: ChangeEvent<HTMLInputElement>) => setMonthlyPayment(+e.target.value)}
-				/>
+				<input className={styles.input} id='monthlyPayment' type='number' />
 				<div className={styles.ruble_block}>
 					<Ruble className={styles.ruble} />
 				</div>
@@ -94,6 +81,4 @@ export const BudgetExpensesGroupItemCreateGoal: FC<Props> = (props) => {
 
 type Props = {
 	close: VoidFunction
-	dispatch: Dispatch<BudgetGroupItemAction>
-	state: BudgetExpensesGroupItem
 }

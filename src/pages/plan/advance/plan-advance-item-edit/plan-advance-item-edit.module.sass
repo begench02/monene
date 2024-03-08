@@ -1,4 +1,5 @@
 .main
+    position: relative
     margin: 20px 0
     background-color: #fff
     padding: 8px 12px 12px 12px
@@ -12,15 +13,23 @@
     padding-bottom: 18px
     margin: 10px 0
     border-bottom: 1px solid #00000024
+    .actions
+        display: flex
+        gap: 25px
 
 .title
     font-size: 15px
     color: #181818
 
-.cancel
+.cancel, .delete
     font-size: 12px
-    color: #515151
     cursor: pointer
+
+.cancel
+    color: #515151
+
+.delete
+    color: #A60F0F
 
 .input_block
     position: relative
@@ -40,7 +49,6 @@
 .date_block
     display: flex
     gap: 10px
-    color: #888888
 
 .btn
     height: 50px

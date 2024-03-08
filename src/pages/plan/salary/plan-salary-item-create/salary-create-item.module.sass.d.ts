@@ -3,21 +3,15 @@
 interface CssExports {
   'btn': string;
   'cancel': string;
-  'delete': string;
-  'delete_buttons': string;
-  'delete_main': string;
-  'delete_no': string;
-  'delete_title': string;
-  'delete_yes': string;
+  'content': string;
+  'date_block': string;
   'header': string;
-  'header_actions': string;
-  'input': string;
   'input_block': string;
   'label': string;
   'main': string;
-  'make_goal': string;
   'ruble': string;
   'ruble_block': string;
+  'title': string;
 }
 export const cssExports: CssExports;
 export default cssExports;
