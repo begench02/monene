@@ -39,17 +39,18 @@ export const BudgetExpensesGroupItemEdit: FC<Props> = (props) => {
 						<div className={styles.delete_main}>
 							<div className={styles.delete_title}>Вы действительно хотите удалить расход?</div>
 							<div className={styles.delete_buttons}>
-								<div
-									className={styles.delete_yes}
-									onClick={() => {
-										dispatch(budgetExpensesGroupItemDelete({ groupId, itemId: item.id }))
-										close()
-									}}
-								>
-									<p>Да</p>
+								<div className={styles.delete_yes}>
+									<p
+										onClick={() => {
+											dispatch(budgetExpensesGroupItemDelete({ groupId, itemId: item.id }))
+											close()
+										}}
+									>
+										Да
+									</p>
 								</div>
-								<div className={styles.delete_no} onClick={close}>
-									<p>Нет</p>
+								<div className={styles.delete_no}>
+									<p onClick={close}>Нет</p>
 								</div>
 							</div>
 						</div>
