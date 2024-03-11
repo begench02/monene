@@ -1,14 +1,14 @@
+import { budgetExpensesGroupItemCreate } from 'store/budget/budget-expenses/budget-expenses.reducer'
 import { BudgetExpensesGroupItemCreateGoal } from './budget-expenses-group-item-create-goal/budget-expenses-group-item-create-goal'
 import { FC, useState } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
+import { RubleInput } from 'components/ruble-input/ruble-input'
 import { Squircle } from 'corner-smoothing'
 import { useAppDispatch } from 'hooks/redux.hook'
 import ArrowDropDown from 'assets/arrow-drop-down.svg'
 import Ruble from 'assets/ruble.svg'
 import Star from 'assets/star.svg'
 import styles from './budget-group-item-create.sass'
-import { FormProvider, useForm } from 'react-hook-form'
-import { budgetExpensesGroupItemCreate } from 'store/budget/budget-expenses/budget-expenses.reducer'
-import { RubleInput } from 'components/ruble-input/ruble-input'
 
 export const BudgetExpensesGroupItemCreate: FC<Props> = (props) => {
 	const { close, groupId } = props

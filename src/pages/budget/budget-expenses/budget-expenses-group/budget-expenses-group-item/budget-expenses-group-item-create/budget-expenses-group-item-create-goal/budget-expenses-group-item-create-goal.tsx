@@ -1,7 +1,5 @@
-import 'react-datepicker/dist/react-datepicker.css'
 import { FC } from 'react'
 import { useFormContext } from 'react-hook-form'
-import DatePicker from 'react-datepicker'
 import Ruble from 'assets/ruble.svg'
 import Star from 'assets/star.svg'
 import styles from './budget-group-item-create-goal.module.sass'
