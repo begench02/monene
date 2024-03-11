@@ -14,6 +14,7 @@ export const BudgetExpensesGroupItemCreate: FC<Props> = (props) => {
 	const { close, groupId } = props
 	const dispatch = useAppDispatch()
 	const [isGoal, setGoal] = useState(false)
+	console.log(isGoal)
 	const methods = useForm()
 	const { register, handleSubmit } = methods
 
@@ -28,10 +29,12 @@ export const BudgetExpensesGroupItemCreate: FC<Props> = (props) => {
 				<div className={styles.header}>
 					<div>Создание расхода</div>
 					<div className={styles.header_actions}>
-						<div className={styles.make_goal} onClick={() => setGoal(true)}>
-							<Star width={12} height={12} />
-							Сделать целью
-						</div>
+						{!isGoal && (
+							<div className={styles.make_goal} onClick={() => setGoal(true)}>
+								<Star width={12} height={12} />
+								Сделать целью
+							</div>
+						)}
 						<div className={styles.delete}>Удалить</div>
 						<div className={styles.cancel} onClick={close}>
 							Отменить
