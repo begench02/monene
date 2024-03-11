@@ -5,6 +5,8 @@ import DatePicker from 'react-datepicker'
 import Ruble from 'assets/ruble.svg'
 import Star from 'assets/star.svg'
 import styles from './budget-group-item-create-goal.module.sass'
+import { RubleInput } from 'components/ruble-input/ruble-input'
+import { DateInput } from 'components/date-input/date-input'
 
 export const BudgetExpensesGroupItemCreateGoal: FC<Props> = (props) => {
 	const { close } = props
@@ -23,6 +25,9 @@ export const BudgetExpensesGroupItemCreateGoal: FC<Props> = (props) => {
 			</div>
 
 			<div className={styles.input_block}>
+				<RubleInput label='Ежемесячный платеж' {...register('monthlyPayment')} />
+			</div>
+			{/* <div className={styles.input_block}>
 				<label className={styles.label} htmlFor='monthly-payment'>
 					Ежемесячный платеж
 				</label>
@@ -30,9 +35,12 @@ export const BudgetExpensesGroupItemCreateGoal: FC<Props> = (props) => {
 				<div className={styles.ruble_block}>
 					<Ruble className={styles.ruble} />
 				</div>
-			</div>
+			</div> */}
 
 			<div className={styles.input_block}>
+				<RubleInput label='Сколько накопить' {...register('savingsTotal')} />
+			</div>
+			{/* <div className={styles.input_block}>
 				<label className={styles.label} htmlFor='savings-total'>
 					Сколько накопить
 				</label>
@@ -40,7 +48,7 @@ export const BudgetExpensesGroupItemCreateGoal: FC<Props> = (props) => {
 				<div className={styles.ruble_block}>
 					<Ruble className={styles.ruble} />
 				</div>
-			</div>
+			</div> */}
 
 			<div className={styles.input_date_block}>
 				<div>
@@ -49,15 +57,20 @@ export const BudgetExpensesGroupItemCreateGoal: FC<Props> = (props) => {
 					</label>
 					<input className={styles.input} id='deadline' />
 				</div>
+				
 				<div>
-					<label className={styles.label} htmlFor='start-date'>
+					<DateInput />
+					{/* <label className={styles.label} htmlFor='start-date'>
 						Дата начала
 					</label>
-					<DatePicker onChange={(date) => console.log(date)} id='start-date' />
+					<DatePicker onChange={(date) => console.log(date)} id='start-date' /> */}
 				</div>
 			</div>
 
 			<div className={styles.input_block}>
+				<RubleInput label='Накопленная сумма' {...register('savings')} />
+			</div>
+			{/* <div className={styles.input_block}>
 				<label className={styles.label} htmlFor='savings'>
 					Накопленная сумма
 				</label>
@@ -65,8 +78,8 @@ export const BudgetExpensesGroupItemCreateGoal: FC<Props> = (props) => {
 				<div className={styles.ruble_block}>
 					<Ruble className={styles.ruble} />
 				</div>
-			</div>
-			<div className={styles.input_block}>
+			</div> */}
+			{/* <div className={styles.input_block}>
 				<label className={styles.label} htmlFor='monthlyPayment'>
 					Ежемесячный платеж
 				</label>
@@ -74,7 +87,7 @@ export const BudgetExpensesGroupItemCreateGoal: FC<Props> = (props) => {
 				<div className={styles.ruble_block}>
 					<Ruble className={styles.ruble} />
 				</div>
-			</div>
+			</div> */}
 		</div>
 	)
 }

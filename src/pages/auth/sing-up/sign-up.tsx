@@ -12,100 +12,106 @@ import Vk from 'assets/auth/vk.svg'
 import Yandex from 'assets/auth/yandex.svg'
 
 export const SignUp = () => {
-    const {
-        register,
-        handleSubmit,
-        resetField,
-        formState: { dirtyFields, isValid, errors },
-    } = useForm<SignUpForm>({
-        defaultValues: {
-            email: '',
-            password: '',
-        },
-        mode: 'onTouched',
-    })
+	const {
+		register,
+		handleSubmit,
+		resetField,
+		formState: { dirtyFields, isValid, errors },
+	} = useForm<SignUpForm>({
+		defaultValues: {
+			email: '',
+			password: '',
+		},
+		mode: 'onTouched',
+	})
 
-    const handleFormSubmit: SubmitHandler<SignUpForm> = (data) => {
-        console.log(data)
-    }
+	const handleFormSubmit: SubmitHandler<SignUpForm> = (data) => {
+		console.log(data)
+	}
 
-    return (
-        <Squircle cornerRadius={10} className={styles.main}>
-            <form className={styles.container} onSubmit={handleSubmit(handleFormSubmit)}>
-                <Logo className={styles.logo} />
-                <Squircle cornerRadius={10} className={styles.tabs}>
-                    <Link className={styles.enter} to='/auth/sign-in'>
-                        Войти
-                    </Link>
-                    <Squircle cornerRadius={6} className={styles.registration}>
-                        Регистрация
-                    </Squircle>
-                </Squircle>
-                <div className={styles.inputs}>
-                    <div className={styles.email_block}>
-                        <input
-                            className={clsx(styles.email, errors.email && styles.input_error)}
-                            placeholder='Ваш e-mail'
-                            type='email'
-                            {...register('email', {
-                                required: 'Email обязателен',
-                                pattern: {
-                                    value: regex.email,
-                                    message: 'Неверный формат email-а',
-                                },
-                            })}
-                        />
-                        {dirtyFields.email && (
-                            <div className={styles.input_clear} onClick={() => resetField('email')}>
-                                &#10005;
-                            </div>
-                        )}
-                    </div>
-                    <div className={styles.password_block}>
-                        <input
-                            className={clsx(styles.password, errors.password && styles.input_error)}
-                            placeholder='Пароль'
-                            type='password'
-                            {...register('password', {
-                                required: 'Пароль обязателен',
-                            })}
-                        />
-                        {dirtyFields.password && (
-                            <div className={styles.input_clear} onClick={() => resetField('password')}>
-                                &#10005;
-                            </div>
-                        )}
-                    </div>
-                </div>
+	return (
+		<Squircle cornerRadius={10} className={styles.main}>
+			<form className={styles.container} onSubmit={handleSubmit(handleFormSubmit)}>
+				<Logo className={styles.logo} />
+				<Squircle cornerRadius={10} className={styles.tabs}>
+					<Link className={styles.enter} to='/auth/sign-in'>
+						Войти
+					</Link>
+					<Squircle cornerRadius={6} className={styles.registration}>
+						Регистрация
+					</Squircle>
+				</Squircle>
+				<div className={styles.inputs}>
+					<div className={styles.email_block}>
+						<input
+							className={clsx(styles.email, errors.email && styles.input_error)}
+							placeholder='Ваш e-mail'
+							type='email'
+							{...register('email', {
+								required: 'Email обязателен',
+								pattern: {
+									value: regex.email,
+									message: 'Неверный формат email-а',
+								},
+							})}
+						/>
+						{dirtyFields.email && (
+							<div className={styles.input_clear} onClick={() => resetField('email')}>
+								&#10005;
+							</div>
+						)}
+					</div>
+					<div className={styles.password_block}>
+						<input
+							className={clsx(styles.password, errors.password && styles.input_error)}
+							placeholder='Пароль'
+							type='password'
+							{...register('password', {
+								required: 'Пароль обязателен',
+							})}
+						/>
+						{dirtyFields.password && (
+							<div className={styles.input_clear} onClick={() => resetField('password')}>
+								&#10005;
+							</div>
+						)}
+					</div>
+				</div>
 
-                <Squircle
-                    cornerRadius={10}
-                    as='button'
-                    className={clsx(styles.enter_block, isValid && styles.enter_block_active)}
-                    // @ts-ignore
-                    disabled={!isValid}
-                >
-                    Зарегистрироваться
-                </Squircle>
-                {<p className={cs.error_text}>{errors.email?.message}</p>}
-                {<p className={cs.error_text}>{!errors.email && errors.password?.message}</p>}
+				<Squircle
+					cornerRadius={10}
+					as='button'
+					className={clsx(styles.enter_block, isValid && styles.enter_block_active)}
+					// @ts-ignore
+					disabled={!isValid}
+				>
+					Зарегистрироваться
+				</Squircle>
+				{<div className={cs.error_text}>{errors.email?.message}</div>}
+				{<div className={cs.error_text}>{!errors.email && errors.password?.message}</div>}
 
-                {/* Social apps' authentication */}
-                <div className={styles.enter_with__block}>
-                    <p>Регистрация с помощью</p>
-                </div>
-                <div className={styles.socials}>
-                    <Vk className={styles.social} />
-                    <Telegram className={styles.social} />
-                    <Yandex className={styles.social} />
-                    <Google className={styles.social} />
-                </div>
-            </form>
-        </Squircle>
-    )
+				<div className={styles.agreement}>
+					<input className={styles.checkbox} type='checkbox' id='agreement' />
+					<label className={styles.agreement__label} htmlFor='agreement'>
+						Пользовательское соглашение и<br /> Политика Конфиденциальности
+					</label>
+				</div>
+				{/* Social apps' authentication */}
+				<div className={styles.enter_with__block}>
+					<p>Регистрация с помощью</p>
+				</div>
+				<div className={styles.socials}>
+					<Vk className={styles.social} />
+					<Telegram className={styles.social} />
+					<Yandex className={styles.social} />
+					<Google className={styles.social} />
+				</div>
+			</form>
+		</Squircle>
+	)
 }
 
 type SignUpForm = {
-    email: string
-    password: string
+	email: string
+	password: string
 }

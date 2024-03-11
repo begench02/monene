@@ -8,6 +8,7 @@ interface CssExports {
   'header_price': string;
   'item_create': string;
   'main': string;
+  'sum': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

@@ -7,9 +7,7 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 
 const webpackDev: Config | DevServerConfig = merge(webpackCommon, {
     mode: 'development',
-    devtool: 'source-map',
     devServer: {
-        compress: true, 
         historyApiFallback: true,
         hot: true,
     },

@@ -11,6 +11,8 @@ interface CssExports {
   'income_header_subtitle': string;
   'income_header_title': string;
   'income_header_year': string;
+  'round_border': string;
+  'round_border_default': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

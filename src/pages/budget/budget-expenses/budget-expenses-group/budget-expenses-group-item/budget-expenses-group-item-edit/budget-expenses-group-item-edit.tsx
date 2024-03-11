@@ -11,6 +11,7 @@ import { useAppDispatch } from 'hooks/redux.hook'
 import Ruble from 'assets/ruble.svg'
 import styles from './budget-expenses-group-item-edit.module.sass'
 import { DeleteModal } from 'components/delete-modal/delete-modal'
+import { RubleInput } from 'components/ruble-input/ruble-input'
 
 export const BudgetExpensesGroupItemEdit: FC<Props> = (props) => {
 	const { item, close, groupId } = props
@@ -65,6 +66,7 @@ export const BudgetExpensesGroupItemEdit: FC<Props> = (props) => {
 				{item.isGoal ? (
 					<BudgetExpensesGroupItemEditGoal register={register} />
 				) : (
+					// <RubleInput label='Ежемесячный платеж' {...register('price')} />
 					<div className={styles.input_block}>
 						<label className={styles.label} htmlFor='monthlyPayment'>
 							Ежемесячный платеж

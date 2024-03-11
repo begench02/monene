@@ -1,13 +1,11 @@
 import { BudgetIncomesGroup as BudgetIncomesGroupType } from 'store/budget/budget-incomes/budget-incomes.type'
 import { BudgetIncomesGroupItem } from './budget-incomes-group-item/budget-incomes-group-item'
 import { BudgetIncomesGroupItemCreate } from './budget-incomes-group-item/budget-incomes-group-item-create/budget-incomes-group-item-create'
+import { BudgetIncomesGroupItemEdit } from './budget-incomes-group-item/budget-incomes-group-item-edit/budget-incomes-group-item-edit'
 import { convertToRuble } from 'utils/index'
 import { FC, useState } from 'react'
-import { Squircle } from 'corner-smoothing'
 import AddCircle from 'assets/add-circle.svg'
 import styles from './budget-incomes-group.module.sass'
-import { BudgetIncomesGroupEdit } from './budget-incomes-group-edit/budget-incomes-group-edit'
-import { BudgetIncomesGroupItemEdit } from './budget-incomes-group-item/budget-incomes-group-item-edit/budget-incomes-group-item-edit'
 
 export const BudgetIncomesGroup: FC<Props> = (props) => {
 	const { group } = props
@@ -22,17 +20,14 @@ export const BudgetIncomesGroup: FC<Props> = (props) => {
 			</div>
 			<div className={styles.content_header}>
 				<div>Название</div>
+				<div>Период</div>
 				<div>Число</div>
-				<div>Сумма</div>
+				<div className={styles.sum}>Сумма</div>
+				<div></div>
 			</div>
 			{group.items.map((item) =>
 				item.id === isGroupItemEditOpen ? (
-					<BudgetIncomesGroupItemEdit
-						groupId={group.id}
-						itemId={item.id}
-						close={() => setGroupItemEditOpen('')}
-						key={item.id}
-					/>
+					<BudgetIncomesGroupItemEdit item={item} close={() => setGroupItemEditOpen('')} key={item.id} />
 				) : (
 					<BudgetIncomesGroupItem
 						groupId={group.id}

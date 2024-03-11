@@ -6463,6 +6463,11 @@ react-refresh@^0.14.0:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.14.0.tgz#4e02825378a5f227079554d4284889354e5f553e"
   integrity sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==
 
+react-responsive-datepicker@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-responsive-datepicker/-/react-responsive-datepicker-1.0.7.tgz#0dd8c630437dc5d2015077b4f75075e6bf0996ad"
+  integrity sha512-7L5JVe//RTVLvQfA5o4JT0mX7NsV+1/+/pbIdTHlJa/q36iuQ1jMehE3ciyIBfuFVizt1W3UDlftT2D8KC+ILg==
+
 react-router-dom@^6.22.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.22.0.tgz#177c8bd27146decbb991eafb5df159f7a9f70035"

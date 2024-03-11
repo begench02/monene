@@ -49,6 +49,10 @@ export const webpackCommon: Configuration = {
 				],
 			},
 			{
+				test: /\.(woff|woff2|eot|ttf|otf)$/i,
+				type: 'asset/resource',
+			},
+			{
 				test: /\.(png|jpg|jpeg|gif)$/i,
 				type: 'asset/resource',
 			},

@@ -1,10 +1,10 @@
 import { BudgetExpensesGroupItem } from 'store/budget/budget-expenses/budget-expenses.type'
-import { ChangeEvent, Dispatch, FC } from 'react'
+import { FC } from 'react'
 import { UseFormRegister } from 'react-hook-form'
-import DatePicker from 'react-datepicker'
 import Ruble from 'assets/ruble.svg'
 import Star from 'assets/star.svg'
 import styles from './budget-expenses-group-item-edit-goal.module.sass'
+import { DateInput } from 'components/date-input/date-input'
 
 export const BudgetExpensesGroupItemEditGoal: FC<Props> = (props) => {
 	const { register } = props
@@ -46,13 +46,14 @@ export const BudgetExpensesGroupItemEditGoal: FC<Props> = (props) => {
 					<label className={styles.label} htmlFor='deadline'>
 						Срок
 					</label>
-					<input className={styles.input} id='deadline' />
+					<input className={styles.input} placeholder='5 мес' id='deadline' />
 				</div>
 				<div>
-					<label className={styles.label} htmlFor='start-date'>
+					<DateInput />
+					{/* <label className={styles.label} htmlFor='start-date'>
 						Дата начала
 					</label>
-					<input type='date' {...register('startDate')}/>
+					<input type='date' {...register('startDate')} /> */}
 				</div>
 			</div>
 

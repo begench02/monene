@@ -7,6 +7,7 @@ import { useState } from 'react'
 import AddCircle from 'assets/add-circle.svg'
 import styles from './budget-expenses.module.sass'
 import { BudgetExpensesGroupItemSettings } from './budget-expenses-group/budget-expenses-group-item/budget-expenses-group-item-settings/budget-expenses-group-item-settings'
+import clsx from 'clsx'
 
 export const BudgetExpenses = () => {
 	const budget = useAppSelector((state) => state.budgetExpenses)
@@ -32,8 +33,10 @@ export const BudgetExpenses = () => {
 				</div>
 			</div>
 			{isGroupCreateMenuOpen && <BudgetExpensesGroupCreate close={() => setGroupCreateMenuOpen(false)} />}
-			{groups.map((group) => (
-				<BudgetExpensesGroup key={group.id} group={group} />
+			{groups.map((group, index) => (
+				<div key={group.id} className={clsx(index + 1 === groups.length && styles.round_border, styles.round_border_default)}>
+					<BudgetExpensesGroup key={group.id} group={group} />
+				</div>
 			))}
 		</div>
 	)

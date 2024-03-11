@@ -9,7 +9,7 @@ import styles from './budget-incomes-group-item.module.sass'
 
 export const BudgetIncomesGroupItem: FC<Props> = (props) => {
 	const { item, groupId, edit } = props
-	const { name, date, price, id } = item
+	const { name, date, period, price, id } = item
 	const [isGroupItemSettingsOpen, setGroupItemSettingsOpen] = useState('')
 	const groupItemSettingsRef = useRef(null)
 	useOutsideClick(groupItemSettingsRef, () => setGroupItemSettingsOpen(''))
@@ -18,12 +18,11 @@ export const BudgetIncomesGroupItem: FC<Props> = (props) => {
 		<div className={styles.items} ref={groupItemSettingsRef}>
 			<div>{name}</div>
 			<Squircle className={styles.date} cornerRadius={5}>
-				{date}
+				{period}
 			</Squircle>
-			<div className={styles.sum_block}>
-				{convertToRuble(price, 'month')}
-				<More className={styles.more} onClick={() => setGroupItemSettingsOpen(id)} />
-			</div>
+			<Squircle className={styles.date} cornerRadius={5}>{date}</Squircle>
+			<div className={styles.sum_block}>{convertToRuble(price, 'month')}</div>
+			<More className={styles.more} onClick={() => setGroupItemSettingsOpen(id)} />
 			{isGroupItemSettingsOpen === item.id && (
 				<BudgetIncomesGroupItemSettings
 					edit={edit}

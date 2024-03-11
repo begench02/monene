@@ -2,18 +2,18 @@
     background-color: #fff
     font-size: 16px
     font-weight: 500
-    height: 585px
-    padding: 0 40px
+    min-height: 585px
+    padding: 40px
     width: 400px
-
     .container
         width: 320px
 
 .logo
     width: 223.1px
     height: 30.3px
-    margin: 40px
+    margin: 0 40px
     margin-bottom: 20px
+
 .tabs
     align-items: center
     background-color: #F6F6F6
@@ -22,11 +22,9 @@
     grid-template-columns: 1fr 1fr
     height: 51px
     margin: 0 auto
-
     color: #1E2223
     justify-items: center
     padding: 6px
-
     .registration
         display: grid
         justify-content: center
@@ -46,11 +44,9 @@
 .inputs
     display: grid
     margin-top: 16px
-
     .email_block, .password_block
         width: 100%
         position: relative
-
     .email, .password
         height: 60px
         border: 1.4px solid #E6E6E6
@@ -81,14 +77,44 @@
     font-weight: 700
     height: 60px
     justify-content: center
+    // margin: 10px
     margin-bottom: 36px
-    margin: 10px
     width: 100%
     margin-top: 20px
 
 .enter_block_active
     background-color: #1E5D68
     color: #fff
+
+.agreement
+    display: flex
+    align-items: center
+    gap: 25px
+    .checkbox
+        width: 25px
+        height: 25px
+        appearance: none
+        -webkit-appearance: none
+        background-color: #E2F4F8
+        border-radius: 6px
+        cursor: pointer
+        display: flex
+        align-items: center
+        justify-content: center
+        border: 2px #3E909E solid
+        &::after
+            content: url('../../../assets/check_small.png')
+            display: none
+        &:checked::after
+            display: block
+    .agreement__label
+        text-align: center
+        font-weight: 500
+        font-size: 14px
+        color: #1E5D68
+        line-height: 17.85px
+        text-decoration: underline
+        cursor: pointer
 
 .enter_with__block
     margin-top: 32px

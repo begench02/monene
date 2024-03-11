@@ -1,21 +1,21 @@
 import { BudgetExpensesGroupItemCreateGoal } from './budget-expenses-group-item-create-goal/budget-expenses-group-item-create-goal'
-import { ChangeEvent, FC, useState } from 'react'
+import { FC, useState } from 'react'
 import { Squircle } from 'corner-smoothing'
 import { useAppDispatch } from 'hooks/redux.hook'
-import { useCreateBudgetGroupItem } from './budget-expenses-group-item-create.reducer'
 import ArrowDropDown from 'assets/arrow-drop-down.svg'
 import Ruble from 'assets/ruble.svg'
 import Star from 'assets/star.svg'
 import styles from './budget-group-item-create.sass'
 import { FormProvider, useForm } from 'react-hook-form'
 import { budgetExpensesGroupItemCreate } from 'store/budget/budget-expenses/budget-expenses.reducer'
+import { RubleInput } from 'components/ruble-input/ruble-input'
 
 export const BudgetExpensesGroupItemCreate: FC<Props> = (props) => {
 	const { close, groupId } = props
 	const dispatch = useAppDispatch()
+	const [isGoal, setGoal] = useState(false)
 	const methods = useForm()
 	const { register, handleSubmit } = methods
-	const [isGoal, setGoal] = useState(false)
 
 	const onFormSubmit = (data) => {
 		dispatch(budgetExpensesGroupItemCreate({ groupId, item: data }))
@@ -43,26 +43,29 @@ export const BudgetExpensesGroupItemCreate: FC<Props> = (props) => {
 						<label className={styles.label} htmlFor='title'>
 							Название
 						</label>
-						<input className={styles.input} id='title' {...register('name')} />
+						<input className={styles.input} placeholder='Интернет' id='title' {...register('name')} />
 					</div>
 					{isGoal ? (
 						<BudgetExpensesGroupItemCreateGoal close={() => setGoal(false)} />
 					) : (
 						<div className={styles.input_block}>
-							<label className={styles.label} htmlFor='price'>
-								Ежемесячный платеж
-							</label>
-							<input
-								className={styles.input}
-								id='monthlyPayment'
-								type='number'
-								placeholder='30 000'
-								{...register('price')}
-							/>
-							<div className={styles.ruble_block}>
-								<Ruble className={styles.ruble} />
-							</div>
+							<RubleInput label='Ежемесячный платеж' />
 						</div>
+						// <div className={styles.input_block}>
+						// 	<label className={styles.label} htmlFor='price'>
+						// 		Ежемесячный платеж
+						// 	</label>
+						// 	<input
+						// 		className={styles.input}
+						// 		id='monthlyPayment'
+						// 		type='number'
+						// 		placeholder='30 000'
+						// 		{...register('price')}
+						// 	/>
+						// 	<div className={styles.ruble_block}>
+						// 		<Ruble className={styles.ruble} />
+						// 	</div>
+						// </div>
 					)}
 					<div className={styles.input_block}>
 						<label className={styles.label} htmlFor='cheatFrom'>
@@ -79,7 +82,7 @@ export const BudgetExpensesGroupItemCreate: FC<Props> = (props) => {
 						</div>
 					</div>
 
-					<Squircle className={styles.btn} as='button' cornerRadius={10}>
+					<Squircle className={styles.btn} as='button' type='submit' cornerRadius={10}>
 						Сохранить
 					</Squircle>
 				</div>
