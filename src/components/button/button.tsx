@@ -1,12 +1,12 @@
-import { FC } from 'react'
+import { CSSProperties, FC } from 'react'
 import { Squircle } from 'corner-smoothing'
 import styles from './button.module.sass'
 
 export const Button: FC<Props> = (props) => {
-	const { text } = props
+	const { text, style } = props
 
 	return (
-		<Squircle className={styles.main} cornerRadius={10} as='button'>
+		<Squircle className={styles.main} cornerRadius={10} as='button' onClick={props?.onClick} style={style}>
 			{text}
 		</Squircle>
 	)
@@ -14,4 +14,6 @@ export const Button: FC<Props> = (props) => {
 
 type Props = {
 	text: string
+	onClick?: VoidFunction
+	style?: CSSProperties
 }

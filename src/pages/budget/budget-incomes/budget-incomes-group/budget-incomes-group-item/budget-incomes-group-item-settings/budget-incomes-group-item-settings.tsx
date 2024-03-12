@@ -3,6 +3,7 @@ import {
 	budgetExpensesGroupItemMoveDown,
 } from 'store/budget/budget-expenses/budget-expenses.reducer'
 import {
+	budgetIncomesAdditionalGroupItemDelete,
 	budgetIncomesGroupItemDuplicate,
 	budgetIncomesGroupItemMoveDown,
 	budgetIncomesGroupItemMoveUp,
@@ -68,12 +69,12 @@ export const BudgetIncomesGroupItemSettings: FC<Props> = (props) => {
 			</div>
 			{isDeleteItemMenuOpen && (
 				<div className={styles.delete_main}>
-					<div className={styles.delete_title}>Вы действительно хотите удалить расход?</div>
+					<div className={styles.delete_title}>Вы действительно хотите удалить доход?</div>
 					<div className={styles.delete_buttons}>
 						<div className={styles.delete_yes}>
 							<p
 								onClick={() => {
-									dispatch(budgetExpensesGroupItemDelete({ groupId, itemId }))
+									dispatch(budgetIncomesAdditionalGroupItemDelete({ itemId }))
 									close()
 								}}
 							>

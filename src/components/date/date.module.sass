@@ -1,0 +1,42 @@
+.main
+    justify-self: end
+    width: 330px
+    height: 80px
+    display: grid
+    grid-template-columns: 1fr 2fr 1fr
+    align-items: center
+    justify-content: center
+    background-color: #fff
+    padding: 0 16px
+    border-radius: 24px
+
+.left, .right
+    display: grid
+    align-items: center
+    justify-content: center
+    background-color: #D8EFF3
+    width: 45px
+    height: 45px
+    border-radius: 10px
+    cursor: pointer
+    svg
+        width: 12px
+        height: 20px
+
+.left
+    svg
+        transform: rotate(180deg)
+.right
+    justify-self: end
+
+.date
+    cursor: pointer
+    .month
+        font-size: 18px
+        font-weight: 500
+        color: #1E2223
+        text-align: center
+    .year
+        font-size: 12px
+        color: #888888
+        text-align: center
