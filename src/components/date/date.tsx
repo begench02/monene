@@ -22,7 +22,17 @@ export const DateComponent = () => {
 			<div className={styles.right} onClick={() => setMonth((prevMonth) => prevMonth + 1)}>
 				<Arrow />
 			</div>
-			{isCalendarExpanded && <DateExpand close={() => setCalendarExpanded(false)} />}
+			{isCalendarExpanded && (
+				<DateExpand
+					currentYear={year}
+					save={(year, month) => {
+						setYear(year)
+						setMonth(month)
+					}}
+					currentMonth={month}
+					close={() => setCalendarExpanded(false)}
+				/>
+			)}
 		</div>
 	)
 }

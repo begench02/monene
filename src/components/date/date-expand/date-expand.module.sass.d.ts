@@ -6,6 +6,7 @@ interface CssExports {
   'arrows': string;
   'buttons': string;
   'close': string;
+  'current_month': string;
   'main': string;
   'months': string;
   'ok': string;

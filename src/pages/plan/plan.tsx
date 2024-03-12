@@ -10,7 +10,7 @@ export const Plan = () => {
 		<div>
 			<div className={styles.header}>
 				<div className={styles.header_title}>План</div>
-				<div>
+				<div style={{ justifySelf: 'end' }}>
 					<DateComponent />
 				</div>
 				<Squircle className={styles.acc_diff} cornerRadius={30}>

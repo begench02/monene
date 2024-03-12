@@ -1,63 +1,60 @@
 import clsx from 'clsx'
 import styles from './date-expand.module.sass'
 import Arrow from 'assets/arrow-two.svg'
-import { FC } from 'react'
+import { FC, useState } from 'react'
+
+const months = [
+	'Январь',
+	'Февраль',
+	'Март',
+	'Апрель',
+	'Май',
+	'Июнь',
+	'Июль',
+	'Август',
+	'Сентябрь',
+	'Октябрь',
+	'Ноябрь',
+	'Декабрь',
+]
 
 export const DateExpand: FC<Props> = (props) => {
-	const { close } = props
+	const { close, currentMonth, currentYear, save } = props
+	const [month, setMonth] = useState(currentMonth)
+	const [year, setYear] = useState(currentYear)
 
 	return (
 		<div className={styles.main}>
 			<div className={styles.year}>
-				<div>2023</div>
+				<div>{year}</div>
 				<div className={styles.arrows}>
-					<Arrow className={clsx(styles.arrow)} />
-					<Arrow className={clsx(styles.arrow, styles.arrow_down)} />
+					<Arrow className={clsx(styles.arrow)} onClick={() => setYear((prevYear) => prevYear + 1)} />
+					<Arrow
+						className={clsx(styles.arrow, styles.arrow_down)}
+						onClick={() => setYear((prevYear) => prevYear - 1)}
+					/>
 				</div>
 			</div>
 			<div className={styles.months}>
-				<div>
-					<p>Январь</p>
-				</div>
-				<div>
-					<p>Февраль</p>
-				</div>
-				<div>
-					<p>Март</p>
-				</div>
-				<div>
-					<p>Апрель</p>
-				</div>
-				<div>
-					<p>Май</p>
-				</div>
-				<div>
-					<p>Июнь</p>
-				</div>
-				<div>
-					<p>Июль</p>
-				</div>
-				<div>
-					<p>Август</p>
-				</div>
-				<div>
-					<p>Сентябрь</p>
-				</div>
-				<div>
-					<p>Октябрь</p>
-				</div>
-				<div>
-					<p>Ноябрь</p>
-				</div>
-				<div>
-					<p>Декабрь</p>
-				</div>
+				{months.map((m, index) => (
+					<div className={clsx(index === month && styles.current_month)}>
+						<p onClick={() => setMonth(index)}>{m}</p>
+					</div>
+				))}
 			</div>
 			<div className={styles.buttons}>
 				<div className={styles.close} onClick={close}>
 					Закрыть
 				</div>
-				<div className={styles.ok}>ОК</div>
+				<div
+					className={styles.ok}
+					onClick={() => {
+						save(year, month)
+						close()
+					}}
+				>
+					ОК
+				</div>
 			</div>
 		</div>
 	)
@@ -65,4 +62,7 @@ export const DateExpand: FC<Props> = (props) => {
 
 type Props = {
 	close: VoidFunction
+	currentMonth: number
+	currentYear: number
+	save: (year: number, month: number) => void
 }
