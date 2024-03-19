@@ -27,6 +27,7 @@ import {
 import { Consultation } from 'pages/consultation/consultation'
 import { SuggestSubscription } from 'pages/suggest-subscription/suggest-subscription'
 import { Profile } from 'pages/profile/profile'
+import { Subscription } from 'pages/subscription/subscription'
 
 export const PagesRouter: RouteObject[] = [
 	{
@@ -52,6 +53,10 @@ export const PagesRouter: RouteObject[] = [
 			{
 				path: '/profile',
 				element: <Profile />,
+			},
+			{
+				path: '/subscription',
+				element: <Subscription />
 			},
 			{
 				path: '',

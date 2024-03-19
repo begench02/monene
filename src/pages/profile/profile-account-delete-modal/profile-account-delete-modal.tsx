@@ -29,7 +29,7 @@ export const ProfileAccountDeleteModal: FC<Props> = (props) => {
 				<input
 					value={keyword}
 					onChange={(e: ChangeEvent<HTMLInputElement>) => setKeyword(e.target.value)}
-					placeholder='удалить'
+					placeholder='Удалить'
 				/>
 			</div>
 			<Squircle className={styles.btn} cornerRadius={10}>

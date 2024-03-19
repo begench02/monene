@@ -5,6 +5,7 @@ import consultationReducer from './consultation/consultation.reducer'
 import factReducer from './fact/fact.reducer'
 import planAdvanceReducer from './plan/plan-advance/plan-advance.reducer'
 import planSalaryReducer from './plan/plan-salary/plan-salary.reducer'
+import profileReducer from './profile/profile.reducer'
 import surveyReducer from './survey/survey.reducer'
 
 export const store = configureStore({
@@ -16,6 +17,7 @@ export const store = configureStore({
 		planAdvance: planAdvanceReducer,
 		fact: factReducer,
 		consultation: consultationReducer,
+		profile: profileReducer,
 	},
 })
 
